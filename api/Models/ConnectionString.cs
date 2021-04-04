@@ -5,7 +5,7 @@ namespace api.Models
         public string cs { get; set; }
         public ConnectionString(){
             string server = "tlacfitness.mysql.database.azure.com";
-            string database = "TLACFitness";
+            string database = "tlacfitness";
             string port = "3306";
             string username = "tlac_admin@tlacfitness";
             string password = "P@$$w0rd";
