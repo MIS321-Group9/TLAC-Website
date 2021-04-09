@@ -1,3 +1,5 @@
+using api.Models.Admins.Interfaces;
+
 namespace api.Models.Admins
 {
     public class CreateAdmin : ICreateAdmin
