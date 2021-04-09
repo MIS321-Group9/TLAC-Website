@@ -19,5 +19,13 @@ namespace api.Models.Sessions
         public IBookSession Book {get; set;}
         public IDeleteSession Delete {get; set;}
         public ICancelSession Cancel {get; set;}
+        public Session()
+        {
+            Save = new ModifySession();
+            Delete = new DeleteSession();
+            Create = new CreateSession();
+            Book = new BookSession();
+            Cancel = new CancelSession();
+        }
     }
 }

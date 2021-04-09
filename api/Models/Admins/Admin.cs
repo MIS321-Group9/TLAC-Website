@@ -10,5 +10,11 @@ namespace api.Models.Admins
         public IModifyAdmin Save {get; set;}
         public IDeleteAdmin Delete {get; set;}
         public ICreateAdmin Create {get; set;}
+        public Admin()
+        {
+            Save = new ModifyAdmin();
+            Delete = new DeleteAdmin();
+            Create = new CreateAdmin();
+        }
     }
 }
