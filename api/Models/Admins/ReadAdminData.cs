@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using api.Models.Admins.Interfaces;
 
 namespace api.Models.Admins
 {

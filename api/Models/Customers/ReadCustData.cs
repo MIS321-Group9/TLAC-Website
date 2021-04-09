@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using api.Models.Customers.Interfaces;
 
 namespace api.Models.Customers
 {

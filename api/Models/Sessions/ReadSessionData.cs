@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using api.Models.Sessions.Interfaces;
 using api.Models;
+using MySql.Data.MySqlClient;
 
 namespace api.Models.Sessions
 {
