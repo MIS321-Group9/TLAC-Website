@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using api.Models.Trainers.Interfaces;
+using MySql.Data.MySqlClient;
 
 namespace api.Models.Trainers
 {
@@ -15,7 +16,7 @@ namespace api.Models.Trainers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM sessions ORDER BY DateOfSession DESC";
+            string stm = "SELECT * FROM trainers";
             using var cmd = new MySqlCommand(stm, con);
 
             using MySqlDataReader rdr = cmd.ExecuteReader();
@@ -36,7 +37,7 @@ namespace api.Models.Trainers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM sessions WHERE trainerId = @id";
+            string stm = "SELECT * FROM trainers WHERE trainerId = @id";
             using var cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@id",Id);
             cmd.Prepare();

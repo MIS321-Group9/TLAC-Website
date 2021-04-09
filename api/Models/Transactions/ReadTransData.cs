@@ -1,6 +1,7 @@
 using System.Transactions;
 using System.Collections.Generic;
 using api.Models.Transactions.Interfaces;
+using MySql.Data.MySqlClient;
 
 namespace api.Models.Transactions
 {
@@ -8,7 +9,7 @@ namespace api.Models.Transactions
     {
         public List<Transaction> ReadAllTrans()
         {
-             List<Transaction> allTransaction = new List<Transaction>();
+             List<Transaction> allTransactions = new List<Transaction>();
 
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -16,14 +17,14 @@ namespace api.Models.Transactions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM sessions ORDER BY DateOfSession DESC";
+            string stm = "SELECT * FROM transactions ORDER BY TransactionDate DESC";
             using var cmd = new MySqlCommand(stm, con);
 
             using MySqlDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
             {
-                allTransaction.Add(new Transaction(){});
+                allTransactions.Add(new Transaction(){});
             }
 
             return allTransactions;
@@ -37,7 +38,7 @@ namespace api.Models.Transactions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM sessions WHERE sessionId = @id";
+            string stm = "SELECT * FROM transactions WHERE transactionId = @id";
             using var cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@id",Id);
             cmd.Prepare();
