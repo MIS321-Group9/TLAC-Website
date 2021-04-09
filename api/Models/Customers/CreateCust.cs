@@ -1,3 +1,5 @@
+using api.Models.Customers.Interfaces;
+
 namespace api.Models.Customers
 {
     public class CreateCust : ICreateCust

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj": {}
+    "c:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj": {}
   },
   "projects": {
-    "C:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj": {
+    "c:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj",
+        "projectUniqueName": "c:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj",
         "projectName": "TLAC-Website",
-        "projectPath": "C:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj",
+        "projectPath": "c:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj",
         "packagesPath": "C:\\Users\\zachr\\.nuget\\packages\\",
-        "outputPath": "C:\\source\\repos\\TLAC-Website\\obj\\",
+        "outputPath": "c:\\source\\repos\\TLAC-Website\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\zachr\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,34 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.1, )",
+              "noWarn": [
+                "NU1605"
+              ]
+            },
+            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+              "target": "Package",
+              "version": "[5.0.1, )",
+              "noWarn": [
+                "NU1605"
+              ]
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            },
+            "mysql.data": {
+              "target": "Package",
+              "version": "[8.0.23, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

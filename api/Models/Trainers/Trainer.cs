@@ -15,5 +15,11 @@ namespace api.Models.Trainers
         public IModifyTrainer Save {get; set;}
         public IDeleteTrainer Delete {get; set;}
         public ICreateTrainer Create {get; set;}
+        public Trainer()
+        {
+            Save = new ModifyTrainer();
+            Delete = new DeleteTrainer();
+            Create = new CreateTrainer();
+        }
     }
 }

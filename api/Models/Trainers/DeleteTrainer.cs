@@ -1,3 +1,5 @@
+using api.Models.Trainers.Interfaces;
+
 namespace api.Models.Trainers
 {
     public class DeleteTrainer : IDeleteTrainer
