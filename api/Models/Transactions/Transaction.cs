@@ -16,5 +16,12 @@ namespace api.Models.Transactions
         public IModifyTrans Save {get; set;}
         public ICreateTrans Create {get; set;}
         public IDeleteTrans Delete {get; set;}
+
+        public Transaction()
+        {
+            Save = new ModifyTrans();
+            Delete = new DeleteTrans();
+            Create = new CreateTrans();
+        }
     }
 }

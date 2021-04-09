@@ -14,5 +14,11 @@ namespace api.Models.Customers
         public IModifyCust Save {get; set;}
         public IDeleteCust Delete {get; set;}
         public ICreateCust Create {get; set;}
+        public Customer()
+        {
+            Save = new ModifyCust();
+            Delete = new DeleteCust();
+            Create = new CreateCust();
+        }
     }
 }
