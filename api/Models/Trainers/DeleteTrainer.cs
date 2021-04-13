@@ -9,7 +9,7 @@ namespace api.Models.Trainers
 
         }
 
-        void IDeleteTrainer.DeleteTrainer(int Id)
+        void IDeleteTrainer.DeleteTrainer(int TrainerID)
         {
             
         }

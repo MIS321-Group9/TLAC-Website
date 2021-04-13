@@ -9,7 +9,7 @@ namespace api.Models.Transactions
 
         }
 
-        void IDeleteTrans.DeleteTrans(int Id)
+        void IDeleteTrans.DeleteTrans(int TransactionID)
         {
             
         }

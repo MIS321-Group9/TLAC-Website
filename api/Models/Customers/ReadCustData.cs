@@ -29,7 +29,7 @@ namespace api.Models.Customers
             return allSessions;
         }
 
-        public Customer ReadCust(int Id)
+        public Customer ReadCust(int CustomerID)
         {
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -39,7 +39,7 @@ namespace api.Models.Customers
 
             string stm = "SELECT * FROM customers WHERE customerId = @id";
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@id",Id);
+            cmd.Parameters.AddWithValue("@id",CustomerID);
             cmd.Prepare();
 
             using MySqlDataReader rdr = cmd.ExecuteReader();

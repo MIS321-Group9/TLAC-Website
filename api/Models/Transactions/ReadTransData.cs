@@ -30,7 +30,7 @@ namespace api.Models.Transactions
             return allTransactions;
         }
 
-        public Transaction ReadTrans(int Id)
+        public Transaction ReadTrans(int TransactionID)
         {
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -40,7 +40,7 @@ namespace api.Models.Transactions
 
             string stm = "SELECT * FROM transactions WHERE transactionId = @id";
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@id",Id);
+            cmd.Parameters.AddWithValue("@id",TransactionID);
             cmd.Prepare();
 
             using MySqlDataReader rdr = cmd.ExecuteReader();

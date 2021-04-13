@@ -29,7 +29,7 @@ namespace api.Models.Admins
             return allSessions;
         }
 
-        public Admin ReadAdmin(int Id)
+        public Admin ReadAdmin(int AdminID)
         {
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -37,9 +37,9 @@ namespace api.Models.Admins
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM admins WHERE adminId = @id";
+            string stm = "SELECT * FROM admins WHERE adminID = @id";
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@id",Id);
+            cmd.Parameters.AddWithValue("@id",AdminID);
             cmd.Prepare();
 
             using MySqlDataReader rdr = cmd.ExecuteReader();

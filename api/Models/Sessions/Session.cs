@@ -5,7 +5,7 @@ namespace api.Models.Sessions
 {
     public class Session
     {
-        public int Id {get; set;}
+        public int SessionID {get; set;}
         public bool IsCanceled {get; set;}
         public DateTime DateCreated {get; set;}
         public DateTime DateOfSession {get; set;}
