@@ -4,7 +4,7 @@ namespace api.Models.Sessions
 {
     public class CancelSession : ICancelSession
     {
-        void ICancelSession.CancelSession(Session session, int Id)
+        void ICancelSession.CancelSession(Session session, int SessionID)
         {
             
         }

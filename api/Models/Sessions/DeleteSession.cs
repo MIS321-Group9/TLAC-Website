@@ -9,7 +9,7 @@ namespace api.Models.Sessions
 
         }
 
-        void IDeleteSession.DeleteSession(int Id)
+        void IDeleteSession.DeleteSession(int SessionID)
         {
             
         }

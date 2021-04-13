@@ -30,7 +30,7 @@ namespace api.Models.Sessions
             return allSessions;
         }
 
-        public Session ReadSession(int Id)
+        public Session ReadSession(int SessionID)
         {
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -40,7 +40,7 @@ namespace api.Models.Sessions
 
             string stm = "SELECT * FROM sessions WHERE sessionId = @id";
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@id",Id);
+            cmd.Parameters.AddWithValue("@id",SessionID);
             cmd.Prepare();
 
             using MySqlDataReader rdr = cmd.ExecuteReader();

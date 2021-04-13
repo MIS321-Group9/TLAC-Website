@@ -4,7 +4,7 @@ namespace api.Models.Sessions
 {
     public class ModifySession : IModifySession
     {
-        public void SaveSession(Session session, int Id)
+        public void SaveSession(Session session, int SessionID)
         {
             
         }

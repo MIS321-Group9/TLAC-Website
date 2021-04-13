@@ -29,7 +29,7 @@ namespace api.Models.Trainers
             return allTrainers;
         }
 
-        public Trainer ReadTrainer(int Id)
+        public Trainer ReadTrainer(int TrainerID)
         {
              ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -39,7 +39,7 @@ namespace api.Models.Trainers
 
             string stm = "SELECT * FROM trainers WHERE trainerId = @id";
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@id",Id);
+            cmd.Parameters.AddWithValue("@id",TrainerID);
             cmd.Prepare();
 
             using MySqlDataReader rdr = cmd.ExecuteReader();
