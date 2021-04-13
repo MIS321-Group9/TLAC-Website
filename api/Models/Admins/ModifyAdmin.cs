@@ -4,7 +4,7 @@ namespace api.Models.Admins
 {
     public class ModifyAdmin : IModifyAdmin
     {
-        public void SaveAdmin(Admin admin, int Id)
+        public void SaveAdmin(Admin admin, int AdminID)
         {
             
         }

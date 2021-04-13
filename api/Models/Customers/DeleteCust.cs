@@ -9,7 +9,7 @@ namespace api.Models.Customers
 
         }
 
-        void IDeleteCust.DeleteCust(int Id)
+        void IDeleteCust.DeleteCust(int CustomerID)
         {
             
         }

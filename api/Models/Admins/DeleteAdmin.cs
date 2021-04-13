@@ -9,7 +9,7 @@ namespace api.Models.Admins
 
         }
 
-        void IDeleteAdmin.DeleteAdmin(int Id)
+        void IDeleteAdmin.DeleteAdmin(int AdminID)
         {
             
         }

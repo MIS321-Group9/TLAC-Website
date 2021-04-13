@@ -5,7 +5,7 @@ namespace api.Models.Transactions
 {
     public class Transaction
     {
-        public int Id {get; set;}
+        public int TransactionID {get; set;}
         public bool IsRefunded {get; set;}
         public DateTime TransactionDate {get; set;}
         public double Price {get; set;}

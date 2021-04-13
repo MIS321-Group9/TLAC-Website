@@ -4,7 +4,7 @@ namespace api.Models.Sessions
 {
     public class BookSession : IBookSession
     {
-        void IBookSession.BookSession(Session session, int Id)
+        void IBookSession.BookSession(Session session, int SessionID)
         {
             
         }
