@@ -16,7 +16,7 @@ namespace api.Models.Customers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM customers";
+            string stm = "SELECT * FROM tcustomers";
             using var cmd = new MySqlCommand(stm, con);
 
             using MySqlDataReader rdr = cmd.ExecuteReader();
@@ -37,7 +37,7 @@ namespace api.Models.Customers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM customers WHERE customerId = @id";
+            string stm = "SELECT * FROM tcustomers WHERE customerid = @id";
             using var cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@id",CustomerID);
             cmd.Prepare();
