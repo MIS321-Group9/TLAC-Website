@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj": {}
+    "C:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj": {}
   },
   "projects": {
-    "c:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj": {
+    "C:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj",
+        "projectUniqueName": "C:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj",
         "projectName": "TLAC-Website",
-        "projectPath": "c:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj",
+        "projectPath": "C:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj",
         "packagesPath": "C:\\Users\\zachr\\.nuget\\packages\\",
-        "outputPath": "c:\\source\\repos\\TLAC-Website\\obj\\",
+        "outputPath": "C:\\source\\repos\\TLAC-Website\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\zachr\\AppData\\Roaming\\NuGet\\NuGet.Config",

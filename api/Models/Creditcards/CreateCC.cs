@@ -1,3 +1,4 @@
+using System;
 using api.Models.Creditcards.Interfaces;
 using MySql.Data.MySqlClient;
 
@@ -23,7 +24,25 @@ namespace api.Models.Creditcards
 
         void ICreateCC.CreateCC(Creditcard card)
         {
-            
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = @"INSERT INTO tcreditcards(cardno, nameoncard, securitycode, expdate, customerid, trainerid) VALUES(@cardno, @nameoncard, @securitycode, @expdate, @customerid, @trainerid)";
+
+            using var cmd = new MySqlCommand(stm, con);
+            cmd.Parameters.AddWithValue("@cardno", card.CardNo);
+            cmd.Parameters.AddWithValue("@nameoncard", card.NameOnCard);
+            cmd.Parameters.AddWithValue("@securitycode", card.SecurityCode);
+            cmd.Parameters.AddWithValue("@expdate", card.ExpDate);
+            cmd.Parameters.AddWithValue("@customerid", card.CustomerID);
+            cmd.Parameters.AddWithValue("@trainerid", card.TrainerID);
+
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
         }
     }
 }

@@ -21,7 +21,20 @@ namespace api.Models.Admins
 
         void ICreateAdmin.CreateAdmin(Admin admin)
         {
-            
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = @"INSERT INTO tadmins(admincode, adminpassword) VALUES(@admincode, @adminpassword)";
+
+            using var cmd = new MySqlCommand(stm, con);
+            cmd.Parameters.AddWithValue("@admincode", admin.AdminCode);
+            cmd.Parameters.AddWithValue("@adminpassword", admin.AdminPassword);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
         }
     }
 }

@@ -23,7 +23,25 @@ namespace api.Models.Customers
 
         void ICreateCust.CreateCust(Customer cust)
         {
-            
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = @"INSERT INTO tcustomers(customerfname, customerlname, customerphonenumber, customeremail, customerpassword, customerbalance) VALUES(@customerfname, @customerlname, @customerphonenumber, @customeremail, @customerpassword, @customerbalance)";
+
+            using var cmd = new MySqlCommand(stm, con);
+            cmd.Parameters.AddWithValue("@customerfname", cust.CustomerFName);
+            cmd.Parameters.AddWithValue("@customerlname", cust.CustomerLName);
+            cmd.Parameters.AddWithValue("@customerphonenumber", cust.CustomerPhoneNo);
+            cmd.Parameters.AddWithValue("@customeremail", cust.CustomerEmail);
+            cmd.Parameters.AddWithValue("@customerpassword", cust.CustomerPassword);
+            cmd.Parameters.AddWithValue("@customerbalance", cust.CustomerBalance);
+
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
         }
     }
 }
