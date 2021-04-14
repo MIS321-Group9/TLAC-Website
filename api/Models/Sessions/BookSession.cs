@@ -1,4 +1,5 @@
 using api.Models.Sessions.Interfaces;
+using MySql.Data.MySqlClient;
 
 namespace api.Models.Sessions
 {
@@ -6,7 +7,20 @@ namespace api.Models.Sessions
     {
         void IBookSession.BookSession(Session session, int SessionID)
         {
-            
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = $@"UPDATE tsessions customerid=@customerid WHERE sessionid={SessionID}";
+
+            using var cmd = new MySqlCommand(stm, con);
+            cmd.Parameters.AddWithValue("@customerid", session.CustomerID);
+
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using api.Models.AdminEvents.Interfaces;
 using MySql.Data.MySqlClient;
 
@@ -21,7 +22,22 @@ namespace api.Models.AdminEvents
 
         void ICreateAdminEvent.CreateAdminEvent(AdminEvent adminEvent)
         {
-            
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = @"INSERT INTO tevents(eventdescription, dateofevent, eventlength) VALUES(@eventdescription, @dateofevent, @eventlength)";
+
+            using var cmd = new MySqlCommand(stm, con);
+            cmd.Parameters.AddWithValue("@eventdescription", adminEvent.EventDescription);
+            cmd.Parameters.AddWithValue("@dateofevent", adminEvent.DateOfEvent);
+            cmd.Parameters.AddWithValue("@eventlength", adminEvent.EventLength);
+
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
         }
     }
 }

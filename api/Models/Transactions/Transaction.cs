@@ -12,7 +12,9 @@ namespace api.Models.Transactions
         public double CurrentBalance {get; set;}
         public int SessionID {get; set;}
         public int DiscountID {get; set;}
-        public int CreditCardID {get; set;}
+        public int CardID {get; set;}
+        public int CustomerID {get; set;}
+        public int TrainerID {get; set;}
         public IModifyTrans Save {get; set;}
         public ICreateTrans Create {get; set;}
         public IDeleteTrans Delete {get; set;}

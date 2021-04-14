@@ -1,3 +1,4 @@
+using System;
 using api.Models.Transactions.Interfaces;
 using MySql.Data.MySqlClient;
 
@@ -23,7 +24,28 @@ namespace api.Models.Transactions
 
         void ICreateTrans.CreateTrans(Transaction trans)
         {
-            
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = @"INSERT INTO ttransactions(isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid) VALUES(@isrefunded, @transactiondate, @currentbalance, @price, @sessionid, @discountid, @cardid, @customerid, @trainerid)";
+
+            using var cmd = new MySqlCommand(stm, con);
+            cmd.Parameters.AddWithValue("@isrefunded", trans.IsRefunded);
+            cmd.Parameters.AddWithValue("@transactiondate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@currentbalance", trans.CurrentBalance);
+            cmd.Parameters.AddWithValue("@price", trans.Price);
+            cmd.Parameters.AddWithValue("@sessionid", trans.SessionID);
+            cmd.Parameters.AddWithValue("@discountid", trans.DiscountID);
+            cmd.Parameters.AddWithValue("@cardid", trans.CardID);
+            cmd.Parameters.AddWithValue("@customerid", trans.CustomerID);
+            cmd.Parameters.AddWithValue("@trainerid", trans.TrainerID);
+
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
         }
     }
 }
