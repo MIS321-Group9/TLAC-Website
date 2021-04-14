@@ -1,14 +1,14 @@
 using System.Collections.Generic;
-using api.Models.Customers.Interfaces;
+using api.Models.Creditcards.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.Customers
+namespace api.Models.Creditcards
 {
-    public class ReadCustData : IReadAllCustData, IReadCust
+    public class ReadCCData : IReadAllCCData, IReadCC
     {
-        public List<Customer> ReadAllCust()
+        public List<Creditcard> ReadAllCC()
         {
-            List<Customer> allSessions = new List<Customer>();
+            List<Creditcard> allSessions = new List<Creditcard>();
 
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -16,20 +16,20 @@ namespace api.Models.Customers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM tcustomers";
+            string stm = "SELECT * FROM tcreditcards";
             using var cmd = new MySqlCommand(stm, con);
 
             using MySqlDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
             {
-                allSessions.Add(new Customer(){});
+                allSessions.Add(new Creditcard(){});
             }
 
             return allSessions;
         }
 
-        public Customer ReadCust(int CustomerID)
+        public Creditcard ReadCC(int CardID)
         {
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -37,16 +37,16 @@ namespace api.Models.Customers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM tcustomers WHERE customerid = @id";
+            string stm = "SELECT * FROM tcreditcards WHERE cardId = @id";
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@id",CustomerID);
+            cmd.Parameters.AddWithValue("@id",CardID);
             cmd.Prepare();
 
             using MySqlDataReader rdr = cmd.ExecuteReader();
 
             rdr.Read();
 
-            return new Customer(){};
+            return new Creditcard(){};
         }
     }
 }

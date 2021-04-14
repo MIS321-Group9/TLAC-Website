@@ -1,11 +1,11 @@
-using api.Models.Transactions.Interfaces;
+using api.Models.AdminEvents.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.Transactions
+namespace api.Models.AdminEvents
 {
-    public class DeleteTrans : IDeleteTrans
+    public class DeleteAdminEvent : IDeleteAdminEvent
     {
-        public static void DeleteTransTable()
+        public static void DeleteAdminEventTable()
         {
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -13,13 +13,13 @@ namespace api.Models.Transactions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = @"DROP TABLE IF EXISTS ttransactions";
+            string stm = @"DROP TABLE IF EXISTS tevents";
 
             using var cmd = new MySqlCommand(stm, con);
             cmd.ExecuteNonQuery();
         }
 
-        void IDeleteTrans.DeleteTrans(int TransactionID)
+        void IDeleteAdminEvent.DeleteAdminEvent(int EventID)
         {
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -27,7 +27,7 @@ namespace api.Models.Transactions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $"DELETE FROM ttransaction WHERE id={TransactionID}";
+            string stm = $"DELETE FROM tevents WHERE id={EventID}";
 
             using var cmd = new MySqlCommand(stm, con);
 

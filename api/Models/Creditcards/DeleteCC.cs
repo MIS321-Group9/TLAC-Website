@@ -1,11 +1,11 @@
-using api.Models.Transactions.Interfaces;
+using api.Models.Creditcards.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.Transactions
+namespace api.Models.Creditcards
 {
-    public class DeleteTrans : IDeleteTrans
+    public class DeleteCC : IDeleteCC
     {
-        public static void DeleteTransTable()
+        public static void DeleteCCTable()
         {
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -13,13 +13,13 @@ namespace api.Models.Transactions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = @"DROP TABLE IF EXISTS ttransactions";
+            string stm = @"DROP TABLE IF EXISTS tcreditcards";
 
             using var cmd = new MySqlCommand(stm, con);
             cmd.ExecuteNonQuery();
         }
 
-        void IDeleteTrans.DeleteTrans(int TransactionID)
+        void IDeleteCC.DeleteCC(int CardID)
         {
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -27,7 +27,7 @@ namespace api.Models.Transactions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $"DELETE FROM ttransaction WHERE id={TransactionID}";
+            string stm = $"DELETE FROM tcreditcards WHERE id={CardID}";
 
             using var cmd = new MySqlCommand(stm, con);
 

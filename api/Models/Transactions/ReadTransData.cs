@@ -17,7 +17,7 @@ namespace api.Models.Transactions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM transactions ORDER BY TransactionDate DESC";
+            string stm = "SELECT * FROM ttransactions ORDER BY TransactionDate DESC";
             using var cmd = new MySqlCommand(stm, con);
 
             using MySqlDataReader rdr = cmd.ExecuteReader();
@@ -38,7 +38,7 @@ namespace api.Models.Transactions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM transactions WHERE transactionId = @id";
+            string stm = "SELECT * FROM ttransactions WHERE transactionid = @id";
             using var cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@id",TransactionID);
             cmd.Prepare();
