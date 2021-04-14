@@ -1,14 +1,14 @@
 using System.Collections.Generic;
-using api.Models.Customers.Interfaces;
+using api.Models.AdminEvents.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.Customers
+namespace api.Models.AdminEvents
 {
-    public class ReadCustData : IReadAllCustData, IReadCust
+    public class ReadAdminEventData : IReadAllAdminEventData, IReadAdminEvent
     {
-        public List<Customer> ReadAllCust()
+        public List<AdminEvent> ReadAllAdminEvent()
         {
-            List<Customer> allSessions = new List<Customer>();
+            List<AdminEvent> allEvents = new List<AdminEvent>();
 
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -16,20 +16,20 @@ namespace api.Models.Customers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM tcustomers";
+            string stm = "SELECT * FROM tevents";
             using var cmd = new MySqlCommand(stm, con);
 
             using MySqlDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
             {
-                allSessions.Add(new Customer(){});
+                allEvents.Add(new AdminEvent(){});
             }
 
-            return allSessions;
+            return allEvents;
         }
 
-        public Customer ReadCust(int CustomerID)
+        public AdminEvent ReadAdminEvent(int EventID)
         {
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -37,16 +37,16 @@ namespace api.Models.Customers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM tcustomers WHERE customerid = @id";
+            string stm = "SELECT * FROM tevents WHERE eventid = @id";
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@id",CustomerID);
+            cmd.Parameters.AddWithValue("@id",EventID);
             cmd.Prepare();
 
             using MySqlDataReader rdr = cmd.ExecuteReader();
 
             rdr.Read();
 
-            return new Customer(){};
+            return new AdminEvent(){};
         }
     }
 }

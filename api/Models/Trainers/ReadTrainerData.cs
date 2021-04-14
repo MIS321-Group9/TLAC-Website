@@ -16,7 +16,7 @@ namespace api.Models.Trainers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM trainers";
+            string stm = "SELECT * FROM ttrainers";
             using var cmd = new MySqlCommand(stm, con);
 
             using MySqlDataReader rdr = cmd.ExecuteReader();
@@ -37,7 +37,7 @@ namespace api.Models.Trainers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM trainers WHERE trainerId = @id";
+            string stm = "SELECT * FROM ttrainers WHERE trainerid = @id";
             using var cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@id",TrainerID);
             cmd.Prepare();

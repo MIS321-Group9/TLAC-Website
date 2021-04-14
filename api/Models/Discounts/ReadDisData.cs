@@ -1,14 +1,14 @@
 using System.Collections.Generic;
-using api.Models.Customers.Interfaces;
+using api.Models.Discounts.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.Customers
+namespace api.Models.Discounts
 {
-    public class ReadCustData : IReadAllCustData, IReadCust
+    public class ReadDisData : IReadAllDisData, IReadDis
     {
-        public List<Customer> ReadAllCust()
+        public List<Discount> ReadAllDis()
         {
-            List<Customer> allSessions = new List<Customer>();
+            List<Discount> allSessions = new List<Discount>();
 
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -16,20 +16,20 @@ namespace api.Models.Customers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM tcustomers";
+            string stm = "SELECT * FROM tdiscounts";
             using var cmd = new MySqlCommand(stm, con);
 
             using MySqlDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
             {
-                allSessions.Add(new Customer(){});
+                allSessions.Add(new Discount(){});
             }
 
             return allSessions;
         }
 
-        public Customer ReadCust(int CustomerID)
+        public Discount ReadDis(int DiscountID)
         {
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -37,16 +37,16 @@ namespace api.Models.Customers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM tcustomers WHERE customerid = @id";
+            string stm = "SELECT * FROM tdiscounts WHERE discountid = @id";
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@id",CustomerID);
+            cmd.Parameters.AddWithValue("@id",DiscountID);
             cmd.Prepare();
 
             using MySqlDataReader rdr = cmd.ExecuteReader();
 
             rdr.Read();
 
-            return new Customer(){};
+            return new Discount(){};
         }
     }
 }
