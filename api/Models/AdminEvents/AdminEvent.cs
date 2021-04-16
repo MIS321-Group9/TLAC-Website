@@ -6,7 +6,7 @@ namespace api.Models.AdminEvents
     public class AdminEvent
     {
         public int EventID {get; set;}
-        public string AdminDescription {get; set;}
+        public string EventDescription {get; set;}
         public DateTime DateOfEvent {get; set;}
         public int EventLength {get; set;} // length is in hours
         public IModifyAdminEvent Save {get; set;}

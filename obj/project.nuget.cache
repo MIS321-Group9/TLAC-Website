@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Jj4+RrvqCOVsz+aLKwFPH8xsGd+MrH42Y/5N+oQ6qAhwZGYmrkbi0zpJeN+r4t2goOHEQbuVhjD/+gguK7Qghg==",
+  "dgSpecHash": "xdbcnDqC8LBEM0mV7SbgU2FAM+oYLBtQWixE7k1341mT2TfryOVCPUgx6U5aXnb/Kr/0X3YnnlvEbEQcO6cYYg==",
   "success": true,
-  "projectFilePath": "c:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj",
+  "projectFilePath": "C:\\source\\repos\\TLAC-Website\\TLAC-Website.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\zachr\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\zachr\\.nuget\\packages\\google.protobuf\\3.11.4\\google.protobuf.3.11.4.nupkg.sha512",
