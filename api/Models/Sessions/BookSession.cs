@@ -13,7 +13,7 @@ namespace api.Models.Sessions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $@"UPDATE tsessions customerid=@customerid WHERE sessionid={SessionID}";
+            string stm = $@"UPDATE tsessions SET customerid=@customerid WHERE sessionid={SessionID}";
 
             using var cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@customerid", session.CustomerID);

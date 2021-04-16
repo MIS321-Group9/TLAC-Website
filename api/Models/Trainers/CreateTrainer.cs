@@ -13,7 +13,7 @@ namespace api.Models.Trainers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = @"CREATE TABLE tTRAINERS(TrainerID INT AUTO_INCREMENT NOT NULL,TrainerFName VARCHAR(20) NOT NULL,TrainerLName VARCHAR(20) NOT NULL,TrainerEmail VARCHAR(40) NOT NULL,TrainerPassword VARCHAR(20) NOT NULL,TrainerPhoneNumber INT NOT NULL,TrainerBalance DOUBLE NOT NULL,IsCertified BOOLEAN NOT NULL,PRIMARY KEY (TrainerID),UNIQUE (TrainerEmail),UNIQUE (TrainerPhoneNumber));";
+            string stm = @"CREATE TABLE tTRAINERS(TrainerID INT AUTO_INCREMENT NOT NULL,TrainerFName VARCHAR(20) NOT NULL,TrainerLName VARCHAR(20) NOT NULL,TrainerEmail VARCHAR(40) NOT NULL,TrainerPassword VARCHAR(20) NOT NULL,TrainerPhoneNumber VARCHAR(11) NOT NULL,TrainerBalance DOUBLE NOT NULL,IsCertified BOOLEAN NOT NULL,PRIMARY KEY (TrainerID),UNIQUE (TrainerEmail),UNIQUE (TrainerPhoneNumber));";
 
 
             using var cmd = new MySqlCommand(stm, con);
@@ -29,7 +29,7 @@ namespace api.Models.Trainers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = @"INSERT INTO ttrainers(trainerfname, trainerlname, trainerphonenumber, traineremail, trainerpassword, trainerbalance, iscertified) VALUES(@customerfname, @customerlname, @customerphonenumber, @customeremail, @customerpassword, @customerbalance, @iscertified)";
+            string stm = @"INSERT INTO ttrainers(trainerfname, trainerlname, trainerphonenumber, traineremail, trainerpassword, trainerbalance, iscertified) VALUES(@trainerfname, @trainerlname, @trainerphonenumber, @traineremail, @trainerpassword, @trainerbalance, @iscertified)";
 
             using var cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@trainerfname", trainer.TrainerFName);

@@ -5,6 +5,7 @@ namespace api.Models
     {
         public static void CreateAllTables()
         {
+            // creates all the database tables in the correct order
             Trainers.CreateTrainer.CreateTrainerTable();
             Customers.CreateCust.CreateCustTable();
             Admins.CreateAdmin.CreateAdminTable();

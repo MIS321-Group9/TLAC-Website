@@ -14,7 +14,7 @@ namespace api.Models.Creditcards
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = @"CREATE TABLE tCREDITCARDS(CardID INT AUTO_INCREMENT NOT NULL,CardNo INT NOT NULL,NameOnCard VARCHAR(50) NOT NULL,SecurityCode INT NOT NULL,ExpDate DATETIME NOT NULL,CustomerID INT,TrainerID INT,PRIMARY KEY (CardID),FOREIGN KEY (CustomerID) REFERENCES tCUSTOMERS(CustomerID),FOREIGN KEY (TrainerID) REFERENCES tTRAINERS(TrainerID),UNIQUE (CardNo));";
+            string stm = @"CREATE TABLE tCREDITCARDS(CardID INT AUTO_INCREMENT NOT NULL,CardNo VARCHAR(20) NOT NULL,NameOnCard VARCHAR(50) NOT NULL,SecurityCode VARCHAR(3) NOT NULL,ExpDate DATETIME NOT NULL,CustomerID INT,TrainerID INT,PRIMARY KEY (CardID),FOREIGN KEY (CustomerID) REFERENCES tCUSTOMERS(CustomerID),FOREIGN KEY (TrainerID) REFERENCES tTRAINERS(TrainerID),UNIQUE (CardNo));";
 
 
             using var cmd = new MySqlCommand(stm, con);
