@@ -8,7 +8,7 @@ namespace api.Models.Customers
         public string CustomerFName {get; set;}
         public string CustomerLName {get; set;}
         public double CustomerBalance {get; set;}
-        public int CustomerPhoneNo {get; set;}
+        public string CustomerPhoneNo {get; set;}
         public string CustomerEmail {get; set;}
         public string CustomerPassword {get; set;}
         public IModifyCust Save {get; set;}

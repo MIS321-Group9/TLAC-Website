@@ -14,6 +14,7 @@ namespace api.Models.Sessions
         public string SessionDescription {get; set;}
         public int TrainerID {get; set;}
         public int CustomerID {get; set;}
+        public int AdminID {get; set;}
         public IModifySession Save {get; set;}
         public ICreateSession Create {get; set;}
         public IBookSession Book {get; set;}
