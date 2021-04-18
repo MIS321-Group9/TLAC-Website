@@ -13,12 +13,14 @@ namespace api.Models.AdminEvents
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $@"UPDATE tevents SET eventdescription=@eventdescription, dateofevent=@dateofevent, eventlength=@eventlength WHERE eventid={EventID}";
+            string stm = $@"UPDATE tevents SET eventdescription=@eventdescription, dateofevent=@dateofevent, eventlength=@eventlength, iscanceled=@iscanceled, adminid=@adminid WHERE eventid={EventID}";
 
             using var cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@eventdescription", adminEvent.EventDescription);
             cmd.Parameters.AddWithValue("@dateofevent", adminEvent.DateOfEvent);
             cmd.Parameters.AddWithValue("@eventlength", adminEvent.EventLength);
+            cmd.Parameters.AddWithValue("@iscanceled", adminEvent.IsCanceled);
+            cmd.Parameters.AddWithValue("@adminid", adminEvent.AdminID);
 
             cmd.Prepare();
 

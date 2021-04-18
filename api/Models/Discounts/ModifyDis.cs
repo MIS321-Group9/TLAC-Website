@@ -13,9 +13,10 @@ namespace api.Models.Discounts
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $@"UPDATE tdiscounts SET isapplied=@isapplied, percentdiscounted=@percentdiscounted, adminid=@adminid, customerid=@customerid WHERE discountid={DiscountID}";
+            string stm = $@"UPDATE tdiscounts SET discountcode=@discountcode, isapplied=@isapplied, percentdiscounted=@percentdiscounted, adminid=@adminid, customerid=@customerid WHERE discountid={DiscountID}";
 
             using var cmd = new MySqlCommand(stm, con);
+            cmd.Parameters.AddWithValue("@discountcode", discount.DiscountCode);
             cmd.Parameters.AddWithValue("@isapplied", discount.IsApplied);
             cmd.Parameters.AddWithValue("@percentdiscounted", discount.PercentDiscounted);
             cmd.Parameters.AddWithValue("@adminid", discount.AdminID);

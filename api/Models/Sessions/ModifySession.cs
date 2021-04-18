@@ -14,7 +14,7 @@ namespace api.Models.Sessions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $@"UPDATE tsessions SET sessionlength=@sessionlength, dateofsession=@dateofsession, priceofsession=@priceofsession, sessiondescription=@sessiondescription, iscanceled=@iscanceled, customerid=@customerid, trainerid=@trainerid WHERE sessionid={SessionID}";
+            string stm = $@"UPDATE tsessions SET sessionlength=@sessionlength, dateofsession=@dateofsession, priceofsession=@priceofsession, sessiondescription=@sessiondescription, iscanceled=@iscanceled, customerid=@customerid, trainerid=@trainerid, adminid=@adminid WHERE sessionid={SessionID}";
 
             using var cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@sessionlength", session.SessionLength);
@@ -24,6 +24,7 @@ namespace api.Models.Sessions
             cmd.Parameters.AddWithValue("@iscanceled", session.IsCanceled);
             cmd.Parameters.AddWithValue("@customerid", session.CustomerID);
             cmd.Parameters.AddWithValue("@trainerid", session.TrainerID);
+            cmd.Parameters.AddWithValue("@adminid", session.AdminID);
 
             cmd.Prepare();
 
