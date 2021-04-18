@@ -13,8 +13,6 @@ namespace api.Models
             Sessions.CreateSession.CreateSessionTable();
             Discounts.CreateDis.CreateDisTable();
             AdminEvents.CreateAdminEvent.CreateAdminEventTable();
-            Edits.CreateEdits.CreateEditsTable();
-            Creates.CreateCreates.CreateCreatesTable();
             Transactions.CreateTrans.CreateTransTable();
         }
     }

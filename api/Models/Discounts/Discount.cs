@@ -6,6 +6,7 @@ namespace api.Models.Discounts
     public class Discount
     {
         public int DiscountID {get; set;}
+        public string DiscountCode {get; set;}
         public bool IsApplied {get; set;}
         public double PercentDiscounted {get; set;}
         public int AdminID {get; set;}

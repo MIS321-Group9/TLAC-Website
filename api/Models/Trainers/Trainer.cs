@@ -8,7 +8,7 @@ namespace api.Models.Trainers
         public string TrainerFName {get; set;}
         public string TrainerLName {get; set;}
         public double TrainerBalance {get; set;}
-        public int TrainerPhoneNo {get; set;}
+        public string TrainerPhoneNo {get; set;}
         public string TrainerEmail {get; set;}
         public string TrainerPassword {get; set;}
         public bool IsCertified {get; set;}
