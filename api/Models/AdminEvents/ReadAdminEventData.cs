@@ -23,7 +23,14 @@ namespace api.Models.AdminEvents
 
             while (rdr.Read())
             {
-                allEvents.Add(new AdminEvent(){});
+                allEvents.Add(new AdminEvent(){
+                    EventID=rdr.GetInt32(0), 
+                    EventDescription=rdr.GetString(1), 
+                    DateOfEvent=rdr.GetDateTime(2), 
+                    EventLength=rdr.GetInt32(3),
+                    IsCanceled=rdr.GetBoolean(4),
+                    AdminID=rdr.GetInt32(5)
+                });
             }
 
             return allEvents;
@@ -46,7 +53,14 @@ namespace api.Models.AdminEvents
 
             rdr.Read();
 
-            return new AdminEvent(){};
+            return new AdminEvent(){
+                EventID=rdr.GetInt32(0), 
+                EventDescription=rdr.GetString(1), 
+                DateOfEvent=rdr.GetDateTime(2), 
+                EventLength=rdr.GetInt32(3),
+                IsCanceled=rdr.GetBoolean(4),
+                AdminID=rdr.GetInt32(5)
+            };
         }
     }
 }

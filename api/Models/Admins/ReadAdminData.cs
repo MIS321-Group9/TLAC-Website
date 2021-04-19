@@ -23,7 +23,11 @@ namespace api.Models.Admins
 
             while (rdr.Read())
             {
-                allSessions.Add(new Admin(){});
+                allSessions.Add(new Admin(){
+                    AdminID=rdr.GetInt32(0),
+                    AdminCode=rdr.GetString(1),
+                    AdminPassword=rdr.GetString(1)
+                });
             }
 
             return allSessions;
@@ -46,7 +50,11 @@ namespace api.Models.Admins
 
             rdr.Read();
 
-            return new Admin(){};
+            return new Admin(){
+                AdminID=rdr.GetInt32(0),
+                AdminCode=rdr.GetString(1),
+                AdminPassword=rdr.GetString(1)
+            };
         }
     }
 }

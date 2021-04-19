@@ -39,6 +39,7 @@ namespace api.Models.Creditcards
             cmd.Parameters.AddWithValue("@expdate", card.ExpDate);
             cmd.Parameters.AddWithValue("@customerid", card.CustomerID);
             cmd.Parameters.AddWithValue("@trainerid", card.TrainerID);
+            
 
             cmd.Prepare();
 

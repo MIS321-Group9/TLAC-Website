@@ -24,7 +24,18 @@ namespace api.Models.Sessions
 
             while (rdr.Read())
             {
-                allSessions.Add(new Session(){});
+                allSessions.Add(new Session(){
+                    SessionID=rdr.GetInt32(0),
+                    SessionLength=rdr.GetInt32(1),
+                    DateCreated=rdr.GetDateTime(2),
+                    DateOfSession=rdr.GetDateTime(3),
+                    PriceOfSession=rdr.GetDouble(4),
+                    SessionDescription=rdr.GetString(5),
+                    IsCanceled=rdr.GetBoolean(6),
+                    CustomerID=rdr.GetInt32(7),
+                    TrainerID=rdr.GetInt32(8),
+                    AdminID=rdr.GetInt32(9)
+                });
             }
 
             return allSessions;
@@ -47,7 +58,18 @@ namespace api.Models.Sessions
 
             rdr.Read();
 
-            return new Session(){};
+            return new Session(){
+                SessionID=rdr.GetInt32(0),
+                SessionLength=rdr.GetInt32(1),
+                DateCreated=rdr.GetDateTime(2),
+                DateOfSession=rdr.GetDateTime(3),
+                PriceOfSession=rdr.GetDouble(4),
+                SessionDescription=rdr.GetString(5),
+                IsCanceled=rdr.GetBoolean(6),
+                CustomerID=rdr.GetInt32(7),
+                TrainerID=rdr.GetInt32(8),
+                AdminID=rdr.GetInt32(9)
+            };
         }
     }
 }

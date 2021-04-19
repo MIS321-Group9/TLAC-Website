@@ -23,7 +23,15 @@ namespace api.Models.Creditcards
 
             while (rdr.Read())
             {
-                allSessions.Add(new Creditcard(){});
+                allSessions.Add(new Creditcard(){
+                    CardID=rdr.GetInt32(0),
+                    CardNo=rdr.GetString(1),
+                    NameOnCard=rdr.GetString(2),
+                    SecurityCode=rdr.GetString(3),
+                    ExpDate=rdr.GetDateTime(4),
+                    CustomerID=rdr.GetInt32(5),
+                    TrainerID=rdr.GetInt32(6)
+                });
             }
 
             return allSessions;
@@ -46,7 +54,15 @@ namespace api.Models.Creditcards
 
             rdr.Read();
 
-            return new Creditcard(){};
+            return new Creditcard(){
+                CardID=rdr.GetInt32(0),
+                CardNo=rdr.GetString(1),
+                NameOnCard=rdr.GetString(2),
+                SecurityCode=rdr.GetString(3),
+                ExpDate=rdr.GetDateTime(4),
+                CustomerID=rdr.GetInt32(5),
+                TrainerID=rdr.GetInt32(6)
+            };
         }
     }
 }
