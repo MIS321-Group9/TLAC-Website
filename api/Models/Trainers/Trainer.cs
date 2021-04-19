@@ -1,10 +1,11 @@
 using api.Models.Trainers.Interfaces;
+using api.Models.Users;
 
 namespace api.Models.Trainers
 {
-    public class Trainer
+    public class Trainer : User
     {
-        public int TrainerID {get; set;}
+        public int ID {get; set;}
         public string TrainerFName {get; set;}
         public string TrainerLName {get; set;}
         public double TrainerBalance {get; set;}

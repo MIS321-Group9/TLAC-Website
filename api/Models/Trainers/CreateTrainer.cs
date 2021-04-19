@@ -32,10 +32,10 @@ namespace api.Models.Trainers
             string stm = @"INSERT INTO ttrainers(trainerfname, trainerlname, trainerphonenumber, traineremail, trainerpassword, trainerbalance, iscertified) VALUES(@trainerfname, @trainerlname, @trainerphonenumber, @traineremail, @trainerpassword, @trainerbalance, @iscertified)";
 
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@trainerfname", trainer.TrainerFName);
-            cmd.Parameters.AddWithValue("@trainerlname", trainer.TrainerLName);
+            cmd.Parameters.AddWithValue("@trainerfname", trainer.TrainerFName.ToLower());
+            cmd.Parameters.AddWithValue("@trainerlname", trainer.TrainerLName.ToLower());
             cmd.Parameters.AddWithValue("@trainerphonenumber", trainer.TrainerPhoneNo);
-            cmd.Parameters.AddWithValue("@traineremail", trainer.TrainerEmail);
+            cmd.Parameters.AddWithValue("@traineremail", trainer.TrainerEmail.ToLower());
             cmd.Parameters.AddWithValue("@trainerpassword", trainer.TrainerPassword);
             cmd.Parameters.AddWithValue("@trainerbalance", trainer.TrainerBalance);
             cmd.Parameters.AddWithValue("@iscertified", trainer.IsCertified);

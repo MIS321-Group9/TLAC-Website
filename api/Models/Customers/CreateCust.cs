@@ -32,10 +32,10 @@ namespace api.Models.Customers
             string stm = @"INSERT INTO tcustomers(customerfname, customerlname, customerphonenumber, customeremail, customerpassword, customerbalance) VALUES(@customerfname, @customerlname, @customerphonenumber, @customeremail, @customerpassword, @customerbalance)";
 
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@customerfname", cust.CustomerFName);
-            cmd.Parameters.AddWithValue("@customerlname", cust.CustomerLName);
+            cmd.Parameters.AddWithValue("@customerfname", cust.CustomerFName.ToLower());
+            cmd.Parameters.AddWithValue("@customerlname", cust.CustomerLName.ToLower());
             cmd.Parameters.AddWithValue("@customerphonenumber", cust.CustomerPhoneNo);
-            cmd.Parameters.AddWithValue("@customeremail", cust.CustomerEmail);
+            cmd.Parameters.AddWithValue("@customeremail", cust.CustomerEmail.ToLower());
             cmd.Parameters.AddWithValue("@customerpassword", cust.CustomerPassword);
             cmd.Parameters.AddWithValue("@customerbalance", cust.CustomerBalance);
 

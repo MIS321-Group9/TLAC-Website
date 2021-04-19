@@ -1,11 +1,12 @@
 using api.Models.Admins.Interfaces;
+using api.Models.Users;
 
 namespace api.Models.Admins
 {
-    public class Admin
+    public class Admin : User
     {
-        public int AdminID {get; set;}
-        public string AdminCode {get; set;}
+        public int ID {get; set;}
+        public string AdminEmail {get; set;}
         public string AdminPassword {get; set;}
         public IModifyAdmin Save {get; set;}
         public IDeleteAdmin Delete {get; set;}

@@ -13,7 +13,7 @@ namespace api.Models.Admins
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = @"CREATE TABLE tADMINS(AdminID INT AUTO_INCREMENT NOT NULL,AdminCode VARCHAR(20) NOT NULL,AdminPassword VARCHAR(20) NOT NULL,PRIMARY KEY (AdminID),UNIQUE (AdminCode));";
+            string stm = @"CREATE TABLE tADMINS(AdminID INT AUTO_INCREMENT NOT NULL,AdminEmail VARCHAR(20) NOT NULL,AdminPassword VARCHAR(20) NOT NULL,PRIMARY KEY (AdminID),UNIQUE (AdminEmail));";
             using var cmd = new MySqlCommand(stm, con);
 
             cmd.ExecuteNonQuery();
@@ -27,10 +27,10 @@ namespace api.Models.Admins
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = @"INSERT INTO tadmins(admincode, adminpassword) VALUES(@admincode, @adminpassword)";
+            string stm = @"INSERT INTO tadmins(adminemail, adminpassword) VALUES(@adminemail, @adminpassword)";
 
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@admincode", admin.AdminCode);
+            cmd.Parameters.AddWithValue("@adminemail", admin.AdminEmail);
             cmd.Parameters.AddWithValue("@adminpassword", admin.AdminPassword);
             cmd.Prepare();
 
