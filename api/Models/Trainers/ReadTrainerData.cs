@@ -23,7 +23,16 @@ namespace api.Models.Trainers
 
             while (rdr.Read())
             {
-                allTrainers.Add(new Trainer(){});
+                allTrainers.Add(new Trainer(){
+                    TrainerID=rdr.GetInt32(0),
+                    TrainerFName=rdr.GetString(1),
+                    TrainerLName=rdr.GetString(2),
+                    TrainerEmail=rdr.GetString(3),
+                    TrainerPassword=rdr.GetString(4),
+                    TrainerPhoneNo=rdr.GetString(5),
+                    TrainerBalance=rdr.GetDouble(6),
+                    IsCertified=rdr.GetBoolean(7)
+                });
             }
 
             return allTrainers;
@@ -46,7 +55,16 @@ namespace api.Models.Trainers
 
             rdr.Read();
 
-            return new Trainer(){};
+            return new Trainer(){
+                TrainerID=rdr.GetInt32(0),
+                TrainerFName=rdr.GetString(1),
+                TrainerLName=rdr.GetString(2),
+                TrainerEmail=rdr.GetString(3),
+                TrainerPassword=rdr.GetString(4),
+                TrainerPhoneNo=rdr.GetString(5),
+                TrainerBalance=rdr.GetDouble(6),
+                IsCertified=rdr.GetBoolean(7)
+            };
         }
     }
 }

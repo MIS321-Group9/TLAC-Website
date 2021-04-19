@@ -23,7 +23,14 @@ namespace api.Models.Discounts
 
             while (rdr.Read())
             {
-                allSessions.Add(new Discount(){});
+                allSessions.Add(new Discount(){
+                    DiscountID=rdr.GetInt32(0),
+                    DiscountCode=rdr.GetString(1),
+                    IsApplied=rdr.GetBoolean(2),
+                    PercentDiscounted=rdr.GetDouble(3),
+                    AdminID=rdr.GetInt32(4),
+                    CustomerID=rdr.GetInt32(5)
+                });
             }
 
             return allSessions;
@@ -46,7 +53,14 @@ namespace api.Models.Discounts
 
             rdr.Read();
 
-            return new Discount(){};
+            return new Discount(){
+                DiscountID=rdr.GetInt32(0),
+                DiscountCode=rdr.GetString(1),
+                IsApplied=rdr.GetBoolean(2),
+                PercentDiscounted=rdr.GetDouble(3),
+                AdminID=rdr.GetInt32(4),
+                CustomerID=rdr.GetInt32(5)
+            };
         }
     }
 }

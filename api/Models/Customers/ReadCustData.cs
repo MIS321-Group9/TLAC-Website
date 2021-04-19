@@ -23,7 +23,15 @@ namespace api.Models.Customers
 
             while (rdr.Read())
             {
-                allSessions.Add(new Customer(){});
+                allSessions.Add(new Customer(){
+                    CustomerID=rdr.GetInt32(0),
+                    CustomerFName=rdr.GetString(1),
+                    CustomerLName=rdr.GetString(2),
+                    CustomerEmail=rdr.GetString(3),
+                    CustomerPassword=rdr.GetString(4),
+                    CustomerPhoneNo=rdr.GetString(5),
+                    CustomerBalance=rdr.GetDouble(6)
+                });
             }
 
             return allSessions;
@@ -46,7 +54,15 @@ namespace api.Models.Customers
 
             rdr.Read();
 
-            return new Customer(){};
+            return new Customer(){
+                CustomerID=rdr.GetInt32(0),
+                CustomerFName=rdr.GetString(1),
+                CustomerLName=rdr.GetString(2),
+                CustomerEmail=rdr.GetString(3),
+                CustomerPassword=rdr.GetString(4),
+                CustomerPhoneNo=rdr.GetString(5),
+                CustomerBalance=rdr.GetDouble(6)
+            };
         }
     }
 }

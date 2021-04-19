@@ -24,7 +24,19 @@ namespace api.Models.Transactions
 
             while (rdr.Read())
             {
-                allTransactions.Add(new Transaction(){});
+                allTransactions.Add(new Transaction(){
+                    TransactionID=rdr.GetInt32(0),
+                    IsRefunded=rdr.GetBoolean(1),
+                    TransactionDate=rdr.GetDateTime(2),
+                    CurrentBalance=rdr.GetDouble(3),
+                    Price=rdr.GetDouble(4),
+                    SessionID=rdr.GetInt32(5),
+                    DiscountID=rdr.GetInt32(6),
+                    CardID=rdr.GetInt32(7),
+                    CustomerID=rdr.GetInt32(8),
+                    TrainerID=rdr.GetInt32(9),
+
+                });
             }
 
             return allTransactions;
@@ -47,7 +59,18 @@ namespace api.Models.Transactions
 
             rdr.Read();
 
-            return new Transaction(){};
+            return new Transaction(){
+                TransactionID=rdr.GetInt32(0),
+                IsRefunded=rdr.GetBoolean(1),
+                TransactionDate=rdr.GetDateTime(2),
+                CurrentBalance=rdr.GetDouble(3),
+                Price=rdr.GetDouble(4),
+                SessionID=rdr.GetInt32(5),
+                DiscountID=rdr.GetInt32(6),
+                CardID=rdr.GetInt32(7),
+                CustomerID=rdr.GetInt32(8),
+                TrainerID=rdr.GetInt32(9),
+            };
         }
     }
 }
