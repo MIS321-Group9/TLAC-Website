@@ -13,10 +13,10 @@ namespace api.Models.Admins
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $@"UPDATE tadmins SET admincode=@admincode, adminpassword=@adminpassword WHERE adminid={AdminID}";
+            string stm = $@"UPDATE tadmins SET adminemail=@adminemail, adminpassword=@adminpassword WHERE adminid={AdminID}";
 
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@admincode", admin.AdminCode);
+            cmd.Parameters.AddWithValue("@adminemail", admin.AdminEmail);
             cmd.Parameters.AddWithValue("@adminpassword", admin.AdminPassword);
             cmd.Prepare();
 

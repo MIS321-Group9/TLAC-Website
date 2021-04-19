@@ -24,7 +24,7 @@ namespace api.Models.Trainers
             while (rdr.Read())
             {
                 allTrainers.Add(new Trainer(){
-                    TrainerID=rdr.GetInt32(0),
+                    ID=rdr.GetInt32(0),
                     TrainerFName=rdr.GetString(1),
                     TrainerLName=rdr.GetString(2),
                     TrainerEmail=rdr.GetString(3),
@@ -56,7 +56,37 @@ namespace api.Models.Trainers
             rdr.Read();
 
             return new Trainer(){
-                TrainerID=rdr.GetInt32(0),
+                ID=rdr.GetInt32(0),
+                TrainerFName=rdr.GetString(1),
+                TrainerLName=rdr.GetString(2),
+                TrainerEmail=rdr.GetString(3),
+                TrainerPassword=rdr.GetString(4),
+                TrainerPhoneNo=rdr.GetString(5),
+                TrainerBalance=rdr.GetDouble(6),
+                IsCertified=rdr.GetBoolean(7)
+            };
+        }
+
+        public Trainer LoginTrainer(string Email, string Password)
+        {
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = "SELECT * FROM ttrainers WHERE traineremail=@traineremail AND trainerpassword=@trainerpassword";
+            using var cmd = new MySqlCommand(stm, con);
+            cmd.Parameters.AddWithValue("@traineremail",Email.ToLower());
+            cmd.Parameters.AddWithValue("@trainerpassword",Password);
+            cmd.Prepare();
+
+            using MySqlDataReader rdr = cmd.ExecuteReader();
+
+            rdr.Read();
+
+            return new Trainer(){
+                ID=rdr.GetInt32(0),
                 TrainerFName=rdr.GetString(1),
                 TrainerLName=rdr.GetString(2),
                 TrainerEmail=rdr.GetString(3),

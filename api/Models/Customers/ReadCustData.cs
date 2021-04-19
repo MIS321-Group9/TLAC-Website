@@ -24,7 +24,7 @@ namespace api.Models.Customers
             while (rdr.Read())
             {
                 allSessions.Add(new Customer(){
-                    CustomerID=rdr.GetInt32(0),
+                    ID=rdr.GetInt32(0),
                     CustomerFName=rdr.GetString(1),
                     CustomerLName=rdr.GetString(2),
                     CustomerEmail=rdr.GetString(3),
@@ -55,7 +55,36 @@ namespace api.Models.Customers
             rdr.Read();
 
             return new Customer(){
-                CustomerID=rdr.GetInt32(0),
+                ID=rdr.GetInt32(0),
+                CustomerFName=rdr.GetString(1),
+                CustomerLName=rdr.GetString(2),
+                CustomerEmail=rdr.GetString(3),
+                CustomerPassword=rdr.GetString(4),
+                CustomerPhoneNo=rdr.GetString(5),
+                CustomerBalance=rdr.GetDouble(6)
+            };
+        }
+
+        public Customer LoginCustomer(string Email, string Password)
+        {
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = "SELECT * FROM tcustomers WHERE customeremail=@customeremail AND customerpassword=@customerpassword";
+            using var cmd = new MySqlCommand(stm, con);
+            cmd.Parameters.AddWithValue("@customeremail",Email.ToLower());
+            cmd.Parameters.AddWithValue("@customerpassword",Password);
+            cmd.Prepare();
+
+            using MySqlDataReader rdr = cmd.ExecuteReader();
+
+            rdr.Read();
+
+            return new Customer(){
+                ID=rdr.GetInt32(0),
                 CustomerFName=rdr.GetString(1),
                 CustomerLName=rdr.GetString(2),
                 CustomerEmail=rdr.GetString(3),
