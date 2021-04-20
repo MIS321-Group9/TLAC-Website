@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BvO+Et6GKsZkWXrRyX/ByTziiEvCPut48Mu6wV0iD12Y6pIi0FmoxvaIotRdtowzzp45p5oMAQzY257iApvXEQ==",
+  "dgSpecHash": "4tecQCx0t9Wa1uhvbmcArQj0CDFvFrXZ+zMO6mHrvTx9M6yfXByJR92nzIcoB/3A6VsO8qDVmEtMhWutJ6qjEw==",
   "success": true,
-  "projectFilePath": "/Users/jaredhaynie/Desktop/TLAC-Website/api/api.csproj",
+  "projectFilePath": "/Users/jaredhaynie/TLAC-Website/api/api.csproj",
   "expectedPackageFiles": [
     "/Users/jaredhaynie/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "/Users/jaredhaynie/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",

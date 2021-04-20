@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jaredhaynie/Desktop/TLAC-Website/api/api.csproj": {}
+    "/Users/jaredhaynie/TLAC-Website/api/api.csproj": {}
   },
   "projects": {
-    "/Users/jaredhaynie/Desktop/TLAC-Website/api/api.csproj": {
+    "/Users/jaredhaynie/TLAC-Website/api/api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jaredhaynie/Desktop/TLAC-Website/api/api.csproj",
+        "projectUniqueName": "/Users/jaredhaynie/TLAC-Website/api/api.csproj",
         "projectName": "api",
-        "projectPath": "/Users/jaredhaynie/Desktop/TLAC-Website/api/api.csproj",
+        "projectPath": "/Users/jaredhaynie/TLAC-Website/api/api.csproj",
         "packagesPath": "/Users/jaredhaynie/.nuget/packages/",
-        "outputPath": "/Users/jaredhaynie/Desktop/TLAC-Website/api/obj/",
+        "outputPath": "/Users/jaredhaynie/TLAC-Website/api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jaredhaynie/.nuget/NuGet/NuGet.Config"

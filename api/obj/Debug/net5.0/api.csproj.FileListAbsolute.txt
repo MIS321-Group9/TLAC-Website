@@ -1,0 +1,7 @@
+/Users/jaredhaynie/TLAC-Website/api/obj/Debug/net5.0/api.csprojAssemblyReference.cache
+/Users/jaredhaynie/TLAC-Website/api/obj/Debug/net5.0/api.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jaredhaynie/TLAC-Website/api/obj/Debug/net5.0/api.AssemblyInfoInputs.cache
+/Users/jaredhaynie/TLAC-Website/api/obj/Debug/net5.0/api.AssemblyInfo.cs
+/Users/jaredhaynie/TLAC-Website/api/obj/Debug/net5.0/api.csproj.CoreCompileInputs.cache
+/Users/jaredhaynie/TLAC-Website/api/obj/Debug/net5.0/api.MvcApplicationPartsAssemblyInfo.cs
+/Users/jaredhaynie/TLAC-Website/api/obj/Debug/net5.0/api.MvcApplicationPartsAssemblyInfo.cache
