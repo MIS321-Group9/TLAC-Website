@@ -1,7 +1,7 @@
-using api.Models.Creditcards.Interfaces;
+using API.Models.Creditcards.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.Creditcards
+namespace API.Models.Creditcards
 {
     public class DeleteCC : IDeleteCC
     {

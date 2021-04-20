@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace api.Models.Transactions.Interfaces
+namespace API.Models.Transactions.Interfaces
 {
     public interface IReadAllTransData
     {

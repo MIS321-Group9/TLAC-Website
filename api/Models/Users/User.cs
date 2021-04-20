@@ -1,4 +1,4 @@
-namespace api.Models.Users
+namespace API.Models.Users
 {
     public class User
     {

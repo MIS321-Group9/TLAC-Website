@@ -1,7 +1,7 @@
 using System;
-using api.Models.Transactions.Interfaces;
+using API.Models.Transactions.Interfaces;
 
-namespace api.Models.Transactions
+namespace API.Models.Transactions
 {
     public class Transaction
     {

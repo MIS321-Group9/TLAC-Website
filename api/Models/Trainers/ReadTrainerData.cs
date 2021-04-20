@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using api.Models.Trainers.Interfaces;
+using API.Models.Trainers.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.Trainers
+namespace API.Models.Trainers
 {
     public class ReadTrainerData : IReadAllTrainerData, IReadTrainer
     {

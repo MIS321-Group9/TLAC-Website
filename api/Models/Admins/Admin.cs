@@ -1,7 +1,7 @@
-using api.Models.Admins.Interfaces;
-using api.Models.Users;
+using API.Models.Admins.Interfaces;
+using API.Models.Users;
 
-namespace api.Models.Admins
+namespace API.Models.Admins
 {
     public class Admin : User
     {

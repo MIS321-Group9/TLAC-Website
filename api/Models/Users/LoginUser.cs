@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
-using api.Models.Admins;
-using api.Models.Admins.Interfaces;
-using api.Models.Customers;
-using api.Models.Customers.Interfaces;
-using api.Models.Trainers;
-using api.Models.Trainers.Interfaces;
+using API.Models.Admins;
+using API.Models.Admins.Interfaces;
+using API.Models.Customers;
+using API.Models.Customers.Interfaces;
+using API.Models.Trainers;
+using API.Models.Trainers.Interfaces;
 
-namespace api.Models.Users
+namespace API.Models.Users
 {
     public class LoginUser
     {

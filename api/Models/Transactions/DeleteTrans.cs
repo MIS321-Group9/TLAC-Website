@@ -1,7 +1,7 @@
-using api.Models.Transactions.Interfaces;
+using API.Models.Transactions.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.Transactions
+namespace API.Models.Transactions
 {
     public class DeleteTrans : IDeleteTrans
     {

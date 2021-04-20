@@ -1,7 +1,7 @@
 using System;
-using api.Models.Sessions.Interfaces;
+using API.Models.Sessions.Interfaces;
 
-namespace api.Models.Sessions
+namespace API.Models.Sessions
 {
     public class Session
     {

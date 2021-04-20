@@ -1,7 +1,7 @@
-using api.Models.Sessions.Interfaces;
+using API.Models.Sessions.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.Sessions
+namespace API.Models.Sessions
 {
     public class DeleteSession : IDeleteSession
     {

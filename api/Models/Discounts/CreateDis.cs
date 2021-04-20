@@ -1,7 +1,7 @@
-using api.Models.Discounts.Interfaces;
+using API.Models.Discounts.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.Discounts
+namespace API.Models.Discounts
 {
     public class CreateDis : ICreateDis
     {

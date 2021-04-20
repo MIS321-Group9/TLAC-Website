@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using api.Models.Customers.Interfaces;
+using API.Models.Customers.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.Customers
+namespace API.Models.Customers
 {
     public class ReadCustData : IReadAllCustData, IReadCust
     {

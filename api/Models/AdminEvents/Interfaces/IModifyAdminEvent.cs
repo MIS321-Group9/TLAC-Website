@@ -1,6 +1,6 @@
-using api.Models.Admins;
+using API.Models.Admins;
 
-namespace api.Models.AdminEvents.Interfaces
+namespace API.Models.AdminEvents.Interfaces
 {
     public interface IModifyAdminEvent
     {

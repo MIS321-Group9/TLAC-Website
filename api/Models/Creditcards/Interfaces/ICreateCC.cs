@@ -1,4 +1,4 @@
-namespace api.Models.Creditcards.Interfaces
+namespace API.Models.Creditcards.Interfaces
 {
     public interface ICreateCC
     {
