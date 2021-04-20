@@ -1,4 +1,4 @@
-namespace api.Models.AdminEvents.Interfaces
+namespace API.Models.AdminEvents.Interfaces
 {
     public interface IDeleteAdminEvent
     {

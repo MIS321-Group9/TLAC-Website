@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace api.Models.Discounts.Interfaces
+namespace API.Models.Discounts.Interfaces
 {
     public interface IReadAllDisData
     {

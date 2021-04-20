@@ -1,4 +1,4 @@
-namespace api.Models.Admins.Interfaces
+namespace API.Models.Admins.Interfaces
 {
     public interface IReadAdmin
     {

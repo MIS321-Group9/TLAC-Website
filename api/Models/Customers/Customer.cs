@@ -1,7 +1,7 @@
-using api.Models.Customers.Interfaces;
-using api.Models.Users;
+using API.Models.Customers.Interfaces;
+using API.Models.Users;
 
-namespace api.Models.Customers
+namespace API.Models.Customers
 {
     public class Customer : User
     {

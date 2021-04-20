@@ -1,7 +1,7 @@
 using System;
-using api.Models.AdminEvents.Interfaces;
+using API.Models.AdminEvents.Interfaces;
 
-namespace api.Models.AdminEvents
+namespace API.Models.AdminEvents
 {
     public class AdminEvent
     {

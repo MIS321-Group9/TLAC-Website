@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace api.Models.Sessions.Interfaces
+namespace API.Models.Sessions.Interfaces
 {
     public interface IReadAllSessionData
     {

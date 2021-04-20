@@ -1,7 +1,7 @@
-using api.Models.Admins.Interfaces;
+using API.Models.Admins.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.Admins
+namespace API.Models.Admins
 {
     public class ModifyAdmin : IModifyAdmin
     {

@@ -1,5 +1,5 @@
 using System.Diagnostics.Tracing;
-namespace api.Models
+namespace API.Models
 {
     public class DatabaseCreationUtilities
     {

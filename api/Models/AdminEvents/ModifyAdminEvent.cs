@@ -1,8 +1,8 @@
-using api.Models.AdminEvents.Interfaces;
-using api.Models.Admins;
+using API.Models.AdminEvents.Interfaces;
+using API.Models.Admins;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.AdminEvents
+namespace API.Models.AdminEvents
 {
     public class ModifyAdminEvent : IModifyAdminEvent
     {

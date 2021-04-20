@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace api.Models.Trainers.Interfaces
+namespace API.Models.Trainers.Interfaces
 {
     public interface IReadAllTrainerData
     {

@@ -1,7 +1,7 @@
 using System;
-using api.Models.Discounts.Interfaces;
+using API.Models.Discounts.Interfaces;
 
-namespace api.Models.Discounts
+namespace API.Models.Discounts
 {
     public class Discount
     {

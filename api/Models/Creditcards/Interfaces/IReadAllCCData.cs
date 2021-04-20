@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace api.Models.Creditcards.Interfaces
+namespace API.Models.Creditcards.Interfaces
 {
     public interface IReadAllCCData
     {

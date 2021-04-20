@@ -1,4 +1,4 @@
-namespace api.Models.Discounts.Interfaces
+namespace API.Models.Discounts.Interfaces
 {
     public interface IModifyDis
     {

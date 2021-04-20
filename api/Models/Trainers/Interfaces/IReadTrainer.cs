@@ -1,4 +1,4 @@
-namespace api.Models.Trainers.Interfaces
+namespace API.Models.Trainers.Interfaces
 {
     public interface IReadTrainer
     {

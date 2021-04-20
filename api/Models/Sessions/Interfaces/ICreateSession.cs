@@ -1,4 +1,4 @@
-namespace api.Models.Sessions.Interfaces
+namespace API.Models.Sessions.Interfaces
 {
     public interface ICreateSession
     {

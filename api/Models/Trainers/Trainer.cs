@@ -1,7 +1,7 @@
-using api.Models.Trainers.Interfaces;
-using api.Models.Users;
+using API.Models.Trainers.Interfaces;
+using API.Models.Users;
 
-namespace api.Models.Trainers
+namespace API.Models.Trainers
 {
     public class Trainer : User
     {

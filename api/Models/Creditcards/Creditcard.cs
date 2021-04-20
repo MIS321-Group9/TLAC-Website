@@ -1,7 +1,7 @@
 using System;
-using api.Models.Creditcards.Interfaces;
+using API.Models.Creditcards.Interfaces;
 
-namespace api.Models.Creditcards
+namespace API.Models.Creditcards
 {
     public class Creditcard
     {

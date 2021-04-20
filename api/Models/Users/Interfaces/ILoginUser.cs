@@ -1,4 +1,4 @@
-namespace api.Models.Users.Interfaces
+namespace API.Models.Users.Interfaces
 {
     public interface ILoginUser
     {

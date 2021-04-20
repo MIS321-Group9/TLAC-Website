@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using api.Models.Sessions.Interfaces;
-using api.Models;
+using API.Models.Sessions.Interfaces;
+using API.Models;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.Sessions
+namespace API.Models.Sessions
 {
     public class ReadSessionData : IReadAllSessionData, IReadSession
     {

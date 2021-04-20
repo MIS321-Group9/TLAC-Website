@@ -1,4 +1,4 @@
-namespace api.Models.Customers.Interfaces
+namespace API.Models.Customers.Interfaces
 {
     public interface IReadCust
     {

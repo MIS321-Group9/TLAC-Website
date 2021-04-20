@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace api.Models.Customers.Interfaces
+namespace API.Models.Customers.Interfaces
 {
     public interface IReadAllCustData
     {

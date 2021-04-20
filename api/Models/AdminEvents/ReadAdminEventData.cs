@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using api.Models.AdminEvents.Interfaces;
+using API.Models.AdminEvents.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace api.Models.AdminEvents
+namespace API.Models.AdminEvents
 {
     public class ReadAdminEventData : IReadAllAdminEventData, IReadAdminEvent
     {
