@@ -27,7 +27,7 @@ namespace API.Models.Trainers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $"DELETE FROM ttrainer WHERE id={TrainerID}";
+            string stm = $"DELETE FROM ttrainer WHERE trainerid={TrainerID}";
 
             using var cmd = new MySqlCommand(stm, con);
 

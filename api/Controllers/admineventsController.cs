@@ -27,24 +27,29 @@ namespace API.Controllers
 
         // GET: api/adminevents/5
         [EnableCors("AnotherPolicy")]
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}")]
+        public AdminEvent Get(int id)
         {
-            return "value";
+            IReadAdminEvent readObject = new ReadAdminEventData();
+            return readObject.ReadAdminEvent(id);
         }
 
         // POST: api/adminevents
         [EnableCors("AnotherPolicy")]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] AdminEvent value)
         {
+            ICreateAdminEvent insertObject = new CreateAdminEvent();
+            insertObject.CreateAdminEvent(value);
         }
 
         // PUT: api/adminevents/5
         [EnableCors("AnotherPolicy")]
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] AdminEvent value)
         {
+            IModifyAdminEvent modifyObject = new ModifyAdminEvent();
+            modifyObject.SaveAdminEvent(value, id);
         }
 
         // DELETE: api/adminevents/5
@@ -52,6 +57,8 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            IDeleteAdminEvent deleteObject = new DeleteAdminEvent();
+            deleteObject.DeleteAdminEvent(id);
         }
     }
 }

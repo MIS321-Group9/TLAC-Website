@@ -27,7 +27,7 @@ namespace API.Models.Creditcards
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $"DELETE FROM tcreditcards WHERE id={CardID}";
+            string stm = $"DELETE FROM tcreditcards WHERE cardid={CardID}";
 
             using var cmd = new MySqlCommand(stm, con);
 

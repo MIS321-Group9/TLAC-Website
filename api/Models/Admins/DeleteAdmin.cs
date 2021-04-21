@@ -27,7 +27,7 @@ namespace API.Models.Admins
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $"DELETE FROM tadmins WHERE id={AdminID}";
+            string stm = $"DELETE FROM tadmins WHERE adminid={AdminID}";
 
             using var cmd = new MySqlCommand(stm, con);
 

@@ -27,7 +27,7 @@ namespace API.Models.Sessions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $"DELETE FROM tsession WHERE id={SessionID}";
+            string stm = $"DELETE FROM tsession WHERE sessionid={SessionID}";
 
             using var cmd = new MySqlCommand(stm, con);
 
