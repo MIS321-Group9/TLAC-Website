@@ -32,3 +32,15 @@ body {
     -o-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
   }
+
+.text-success {
+    color: #28a745;
+}
+.text-danger {
+    color: #dc3545;
+}
+
+.signin-2-title {
+    font-weight: 300;
+    font-size: 1.5rem;
+}
