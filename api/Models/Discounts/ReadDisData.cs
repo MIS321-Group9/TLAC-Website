@@ -23,13 +23,20 @@ namespace API.Models.Discounts
 
             while (rdr.Read())
             {
+                int custId;
+                try{
+                    custId = rdr.GetInt32(5);
+                }
+                catch{
+                    custId = 0;
+                }
                 allSessions.Add(new Discount(){
                     DiscountID=rdr.GetInt32(0),
                     DiscountCode=rdr.GetString(1),
                     IsApplied=rdr.GetBoolean(2),
                     PercentDiscounted=rdr.GetDouble(3),
                     AdminID=rdr.GetInt32(4),
-                    CustomerID=rdr.GetInt32(5)
+                    CustomerID=custId
                 });
             }
 
@@ -52,6 +59,13 @@ namespace API.Models.Discounts
             using MySqlDataReader rdr = cmd.ExecuteReader();
 
             rdr.Read();
+            int custId;
+            try{
+                custId = rdr.GetInt32(5);
+            }
+            catch{
+                custId = 0;
+            }
 
             return new Discount(){
                 DiscountID=rdr.GetInt32(0),
@@ -59,7 +73,7 @@ namespace API.Models.Discounts
                 IsApplied=rdr.GetBoolean(2),
                 PercentDiscounted=rdr.GetDouble(3),
                 AdminID=rdr.GetInt32(4),
-                CustomerID=rdr.GetInt32(5)
+                CustomerID=custId
             };
         }
     }

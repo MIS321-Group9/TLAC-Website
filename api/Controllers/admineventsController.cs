@@ -27,7 +27,7 @@ namespace API.Controllers
 
         // GET: api/adminevents/5
         [EnableCors("AnotherPolicy")]
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetEvent")]
         public AdminEvent Get(int id)
         {
             IReadAdminEvent readObject = new ReadAdminEventData();
@@ -45,7 +45,7 @@ namespace API.Controllers
 
         // PUT: api/adminevents/5
         [EnableCors("AnotherPolicy")]
-        [HttpPut("{id}")]
+        [HttpPut("{id}", Name = "PutEvent")]
         public void Put(int id, [FromBody] AdminEvent value)
         {
             IModifyAdminEvent modifyObject = new ModifyAdminEvent();
@@ -54,7 +54,7 @@ namespace API.Controllers
 
         // DELETE: api/adminevents/5
         [EnableCors("AnotherPolicy")]
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}", Name = "DeleteEvent")]
         public void Delete(int id)
         {
             IDeleteAdminEvent deleteObject = new DeleteAdminEvent();
