@@ -5,7 +5,7 @@ namespace API.Models.Sessions
 {
     public class BookSession : IBookSession
     {
-        void IBookSession.BookSession(Session session, int SessionID)
+        void IBookSession.BookSession(int CustomerID, int SessionID)
         {
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -13,10 +13,9 @@ namespace API.Models.Sessions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $@"UPDATE tsessions SET customerid=@customerid WHERE sessionid={SessionID}";
+            string stm = $@"UPDATE tsessions SET customerid={CustomerID} WHERE sessionid={SessionID}";
 
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@customerid", session.CustomerID);
 
             cmd.Prepare();
 
