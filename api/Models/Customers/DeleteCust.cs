@@ -27,7 +27,7 @@ namespace API.Models.Customers
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $"DELETE FROM tcustomers WHERE id={CustomerID}";
+            string stm = $"DELETE FROM tcustomers WHERE customerid={CustomerID}";
 
             using var cmd = new MySqlCommand(stm, con);
 

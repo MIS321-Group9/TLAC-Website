@@ -27,7 +27,7 @@ namespace API.Models.Transactions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $"DELETE FROM ttransaction WHERE id={TransactionID}";
+            string stm = $"DELETE FROM ttransaction WHERE transactionid={TransactionID}";
 
             using var cmd = new MySqlCommand(stm, con);
 

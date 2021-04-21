@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\source\\repos\\TLAC-Website\\API\\API.csproj": {}
+    "C:\\source\\repos\\TLAC-Website\\api\\api.csproj": {}
   },
   "projects": {
-    "C:\\source\\repos\\TLAC-Website\\API\\API.csproj": {
+    "C:\\source\\repos\\TLAC-Website\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\source\\repos\\TLAC-Website\\API\\API.csproj",
-        "projectName": "API",
-        "projectPath": "C:\\source\\repos\\TLAC-Website\\API\\API.csproj",
+        "projectUniqueName": "C:\\source\\repos\\TLAC-Website\\api\\api.csproj",
+        "projectName": "api",
+        "projectPath": "C:\\source\\repos\\TLAC-Website\\api\\api.csproj",
         "packagesPath": "C:\\Users\\zachr\\.nuget\\packages\\",
-        "outputPath": "C:\\source\\repos\\TLAC-Website\\API\\obj\\",
+        "outputPath": "C:\\source\\repos\\TLAC-Website\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\zachr\\AppData\\Roaming\\NuGet\\NuGet.Config",

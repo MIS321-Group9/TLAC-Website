@@ -23,7 +23,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "API/1.0.0": {
+      "api/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.1",
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": "5.0.1",
@@ -316,10 +316,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "API.dll": {}
+          "api.dll": {}
         },
         "compile": {
-          "API.dll": {}
+          "api.dll": {}
         }
       },
       "BouncyCastle.NetCore/1.8.5": {
@@ -3644,7 +3644,7 @@
     }
   },
   "libraries": {
-    "API/1.0.0": {
+    "api/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

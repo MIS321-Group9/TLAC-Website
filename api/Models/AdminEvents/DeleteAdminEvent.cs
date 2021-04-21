@@ -27,7 +27,7 @@ namespace API.Models.AdminEvents
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $"DELETE FROM tevents WHERE id={EventID}";
+            string stm = $"DELETE FROM tevents WHERE eventid={EventID}";
 
             using var cmd = new MySqlCommand(stm, con);
 

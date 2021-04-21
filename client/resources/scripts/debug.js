@@ -1,5 +1,5 @@
 function getAdmins(){
-    const allAdminsUrl="https://localhost:5001/api/Admin";
+    const allAdminsUrl="https://localhost:5001/api/admins";
 
     fetch(allAdminsUrl).then(function(response){
         console.log(response);
@@ -7,10 +7,10 @@ function getAdmins(){
     }).then(function(json){
         let html="<ul>";
         json.forEach((admin)=>{
-            html+="<li>"+"ID : "+admin.ID+" | Email : " +admin.AdminEmail+ " | Password : "+admin.AdminPassword+"</li>"
+            html+="<li>"+"ID : "+admin.id+" | Email : " +admin.adminEmail+ " | Password : "+admin.adminPassword+"</li>"
         });
         html+="</ul>";
-        document.getElementById("Admin").innerHTML=html;
+        document.getElementById("admins").innerHTML=html;
     }).catch(function(error){
         console.log(error);
     });

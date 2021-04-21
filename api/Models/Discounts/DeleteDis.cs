@@ -27,7 +27,7 @@ namespace API.Models.Discounts
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = $"DELETE FROM tdiscounts WHERE id={DiscountID}";
+            string stm = $"DELETE FROM tdiscounts WHERE discountid={DiscountID}";
 
             using var cmd = new MySqlCommand(stm, con);
 
