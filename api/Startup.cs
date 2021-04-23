@@ -35,6 +35,25 @@ namespace API
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                 });
+                options.AddPolicy("Cancel",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                });
+                options.AddPolicy("Book",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                });
+            });
+
+            services.AddSwaggerGen (c =>
+            {
+                c.ResolveConflictingActions (apiDescriptions => apiDescriptions.First ());
             });
 
             services.AddControllers();

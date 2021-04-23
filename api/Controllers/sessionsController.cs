@@ -25,7 +25,7 @@ namespace api.Controllers
 
         // GET: api/sessions/5
         [EnableCors("AnotherPolicy")]
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetSession")]
         public Session Get(int id)
         {
             IReadSession readObject = new ReadSessionData();
@@ -41,10 +41,9 @@ namespace api.Controllers
             insertObject.CreateSession(value);
         }
 
-
         // PUT: api/sessions/5
         [EnableCors("AnotherPolicy")]
-        [HttpPut("{id}")]
+        [HttpPut("{id}", Name = "PutSession")]
         public void Put(int id, [FromBody] Session value)
         {
             IModifySession modifyObject = new ModifySession();
@@ -53,11 +52,29 @@ namespace api.Controllers
 
         // DELETE: api/sessions/5
         [EnableCors("AnotherPolicy")]
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}", Name = "DeleteSession")]
         public void Delete(int id)
         {
             IDeleteSession deleteObject = new DeleteSession();
             deleteObject.DeleteSession(id);
+        }
+
+        // BOOK SESSION: api/session/5
+        [EnableCors("Book")]
+        [HttpPut("{id}", Name = "BookSession")]
+        public void Book(int custId, int id)
+        {
+            IBookSession modifyObject = new BookSession();
+            modifyObject.BookSession(custId, id);
+        }
+
+        // CANCEL SESSION: api/session/5
+        [EnableCors("Cancel")]
+        [HttpPut("{id}", Name = "CancelSession")]
+        public void Cancel(int id)
+        {
+            ICancelSession modifyObject = new CancelSession();
+            modifyObject.CancelSession(id);
         }
     }
 }

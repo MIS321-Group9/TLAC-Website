@@ -25,7 +25,7 @@ namespace api.Controllers
 
         // GET: api/admins/5
         [EnableCors("AnotherPolicy")]
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetAdmin")]
         public Admin Get(int id)
         {
             IReadAdmin readObject = new ReadAdminData();
@@ -44,7 +44,7 @@ namespace api.Controllers
 
         // PUT: api/admins/5
         [EnableCors("AnotherPolicy")]
-        [HttpPut("{id}")]
+        [HttpPut("{id}", Name = "PutAdmin")]
         public void Put(int id, [FromBody] Admin value)
         {
             IModifyAdmin modifyObject = new ModifyAdmin();
@@ -53,7 +53,7 @@ namespace api.Controllers
 
         // DELETE: api/admins/5
         [EnableCors("AnotherPolicy")]
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}", Name = "DeleteAdmin")]
         public void Delete(int id)
         {
             IDeleteAdmin deleteObject = new DeleteAdmin();

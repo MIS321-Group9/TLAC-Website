@@ -24,6 +24,34 @@ namespace API.Models.Transactions
 
             while (rdr.Read())
             {
+                int disId;
+                int cardId;
+                int custId;
+                int trainerId;
+                try{
+                    disId = rdr.GetInt32(6);
+                }
+                catch{
+                    disId = 0;
+                }
+                try{
+                    cardId = rdr.GetInt32(7);
+                }
+                catch{
+                    cardId = 0;
+                }
+                try{
+                    custId = rdr.GetInt32(8);
+                }
+                catch{
+                    custId = 0;
+                }
+                try{
+                    trainerId = rdr.GetInt32(9);
+                }
+                catch{
+                    trainerId = 0;
+                }
                 allTransactions.Add(new Transaction(){
                     TransactionID=rdr.GetInt32(0),
                     IsRefunded=rdr.GetBoolean(1),
@@ -31,10 +59,10 @@ namespace API.Models.Transactions
                     CurrentBalance=rdr.GetDouble(3),
                     Price=rdr.GetDouble(4),
                     SessionID=rdr.GetInt32(5),
-                    DiscountID=rdr.GetInt32(6),
-                    CardID=rdr.GetInt32(7),
-                    CustomerID=rdr.GetInt32(8),
-                    TrainerID=rdr.GetInt32(9),
+                    DiscountID=disId,
+                    CardID=cardId,
+                    CustomerID=custId,
+                    TrainerID=trainerId,
 
                 });
             }
@@ -58,6 +86,35 @@ namespace API.Models.Transactions
             using MySqlDataReader rdr = cmd.ExecuteReader();
 
             rdr.Read();
+            
+            int disId;
+            int cardId;
+            int custId;
+            int trainerId;
+            try{
+                disId = rdr.GetInt32(6);
+            }
+            catch{
+                disId = 0;
+            }
+            try{
+                cardId = rdr.GetInt32(7);
+            }
+            catch{
+                cardId = 0;
+            }
+            try{
+                custId = rdr.GetInt32(8);
+            }
+            catch{
+                custId = 0;
+            }
+            try{
+                trainerId = rdr.GetInt32(9);
+            }
+            catch{
+                trainerId = 0;
+            }
 
             return new Transaction(){
                 TransactionID=rdr.GetInt32(0),
@@ -66,10 +123,10 @@ namespace API.Models.Transactions
                 CurrentBalance=rdr.GetDouble(3),
                 Price=rdr.GetDouble(4),
                 SessionID=rdr.GetInt32(5),
-                DiscountID=rdr.GetInt32(6),
-                CardID=rdr.GetInt32(7),
-                CustomerID=rdr.GetInt32(8),
-                TrainerID=rdr.GetInt32(9),
+                DiscountID=disId,
+                CardID=cardId,
+                CustomerID=custId,
+                TrainerID=trainerId,
             };
         }
     }
