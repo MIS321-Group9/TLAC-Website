@@ -7749,26 +7749,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\zachr\\.nuget\\packages\\": {}
+    "/Users/jaredhaynie/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\source\\repos\\TLAC-Website\\API\\API.csproj",
-      "projectName": "API",
-      "projectPath": "c:\\source\\repos\\TLAC-Website\\API\\API.csproj",
-      "packagesPath": "C:\\Users\\zachr\\.nuget\\packages\\",
-      "outputPath": "c:\\source\\repos\\TLAC-Website\\API\\obj\\",
+      "projectUniqueName": "/Users/jaredhaynie/TLAC-Website/api/api.csproj",
+      "projectName": "api",
+      "projectPath": "/Users/jaredhaynie/TLAC-Website/api/api.csproj",
+      "packagesPath": "/Users/jaredhaynie/.nuget/packages/",
+      "outputPath": "/Users/jaredhaynie/TLAC-Website/api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\zachr\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/jaredhaynie/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7836,7 +7834,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/Cellar/dotnet/5.0.103/libexec/sdk/5.0.103/RuntimeIdentifierGraph.json"
       }
     }
   }

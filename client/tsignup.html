@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TLAC Fitness - Trainer Sign-up</title>
+   <!-- CSS & Icon-->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link href="resources/css/index.css" rel="stylesheet">
+   <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/expenses-vs-income/30/__gym_sport_activities_dumbbell-512.png">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+        <a class="navbar-brand" href="index.html">  
+            <img src="https://cdn0.iconfinder.com/data/icons/expenses-vs-income/30/__gym_sport_activities_dumbbell-512.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            TLAC
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="schedule.html">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="account.html">Account</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+          </ul>
+          <span class="navbar-text">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">Login</a>
+                  </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="signup.html">Sign-up</a>
+                </li>
+            </ul>
+          </span>
+        </div>
+      </nav>
+    
+
+    <!-- Sign-up Form -->
+    <div class="container centered">
+        <div class="row">
+          <div class="col-sm-9 col-md-7 col-lg-5 mx-auto text-center">
+            <div class="card card-signin my-5">
+              <div class="card-body">
+                <h5 class="card-title text-center">Trainer Sign-up</h5>
+                <form action="" name="signup" class="justify-content-center" method="POST" id="signup-form" onsubmit="return checkSubmission(this)">
+                    <div class="form-group">
+                        <label class="sr-only">First Name</label>
+                        <input type="text" id="fname" class="form-control" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only">Last Name</label>
+                      <input type="text" id="lname" class="form-control" placeholder="Last Name">
+                    </div>
+                    <hr class="my-4">
+                    <div class="form-group">
+                        <label class="sr-only">Email</label>
+                        <input type="text" id="email" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only">Confirm Email</label>
+                      <input type="text" id="confirmemail" class="form-control" placeholder="Confirm Email" onkeyup="checkEmailMatch();">
+                    </div>
+                    <div class="registrationFormAlert" id="divCheckEmailMatch">
+                    </div>
+                    <hr class="my-4">
+                    <div class="form-group">
+                        <label class="sr-only">Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only">Confirm Password</label>
+                        <input type="password" id="confirmpassword" class="form-control" placeholder="Confirm Password" onkeyup="checkPasswordMatch();">
+                    </div>
+                    <div class="registrationFormAlert" id="divCheckPasswordMatch">
+                    </div>
+                    <hr class="my-4">
+                    <button type="submit" class="btn btn-outline-primary btn-md btn-block">Submit</button>
+                    <p class="text-center">Already have an account? <a href="login.html">Log In</a></p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="./resources/scripts/index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></body>
+</html>
