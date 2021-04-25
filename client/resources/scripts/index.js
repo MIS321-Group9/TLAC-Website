@@ -465,6 +465,9 @@ function populateAccountPage(){
             document.getElementById('a_balance').placeholder="$"+customer.customerBalance;
             document.getElementById('a_phoneno').placeholder=phoneNoFormat(customer.customerPhoneNo);
             document.getElementById('a_email').placeholder=customer.customerEmail;
+            document.getElementById('login-link').style.display="none";
+            document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(customer.customerFName, customer.customerLName);
+            document.getElementById('signup-link').href="account.html";
         })
     } else if (localStorage.getItem('userType')==2) {
         document.getElementById('a_type').innerHTML="Trainer Account";
@@ -477,6 +480,9 @@ function populateAccountPage(){
                 document.getElementById('a_balance').placeholder="$"+trainer.trainerBalance;
                 document.getElementById('a_phoneno').placeholder=phoneNoFormat(trainer.trainerPhoneNo);
                 document.getElementById('a_email').placeholder=trainer.trainerEmail;
+                document.getElementById('login-link').style.display="none";
+                document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(trainer.trainerFName, trainer.trainerLName);
+                document.getElementById('signup-link').href="account.html";
             })
     } else if (localStorage.getItem('userType')==3) {
         document.getElementById('a_type').innerHTML="Admin Account";
@@ -493,6 +499,9 @@ function populateAccountPage(){
                 document.getElementById('_balance').style.display="none";
                 document.getElementById('_phoneno').style.display="none";
                 document.getElementById('a_email').placeholder=admin.adminEmail;
+                document.getElementById('login-link').style.display="none";
+                document.getElementById('signup-link').innerHTML="Admin Dashboard";
+                document.getElementById('signup-link').href="account.html";
             })
         }
 }
