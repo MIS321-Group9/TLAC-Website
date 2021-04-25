@@ -49,10 +49,16 @@ body {
     max-height: 285px;
     overflow-y: auto;
     scrollbar-width: none
-    
 }
 
 .sessioncard {
     min-height: 500px;
 }
 
+label {
+    margin-left: 20px;
+}
+
+#datepicker > span:hover {
+    cursor: pointer;
+}
