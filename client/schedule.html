@@ -13,7 +13,7 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   </head>
-<body onload="selectedSession()">
+<body onload="displayToday()">
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
@@ -67,11 +67,14 @@
 
       <div class="container centered">
         <div class="row">
-            <div class="col col-md-6 mx-auto text-center">
-                <div class="card card-signin my-5">
-                    <div class="card-body text-center">
+            <div class="col col-md-6 mx-auto">
+                <div class="card card-signin my-5 sessioncard">
+                    <div class="card-body">
                       <h5 class="card-title text-center">Available Sessions</h5>
-                      <input class="form-control" type="text" id="datepicker" placeholder="Select a Date">
+                      <input class="form-control" type="text" id="datepicker" placeholder="Select a Date" readonly onclick="getSessionsByDate()">
+                      <hr class="my-4">
+                      <div class="container scroll" id="sessionTable">
+                      </div>
                     </div>
                 </div>
             </div>
