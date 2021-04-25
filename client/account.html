@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="resources/css/index.css" rel="stylesheet">
     <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/expenses-vs-income/30/__gym_sport_activities_dumbbell-512.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
-
+<body onload="loginCheck()">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
         <a class="navbar-brand" href="index.html">  
@@ -49,9 +52,31 @@
         </div>
       </nav>
 
+      <div class="container centered">
+        <div class="col col-md-6 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h5 class="card-title text-center" id="a_type">Account</h5>
+              <input id="a_fname" class="form-control" readonly disabled>
+              <p id="_fname">First Name</p>
+              <input id="a_lname" class="form-control" readonly disabled>
+              <p id="_lname">Last Name</p>
+              <input id="a_balance" class="form-control" readonly disabled>
+              <p id="_balance">Balance</p>
+              <input id="a_phoneno" class="form-control" readonly disabled>
+              <p id="_phoneno">Phone Number</p>
+              <input id="a_email" class="form-control" readonly disabled>
+              <p id="_email">Email</p>
+            </div>
+            <div class="card-footer text-center">
+              <a href="#" class="btn btn-outline-primary">Generate Report</a>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
     <!-- Scripts -->
-    <script type="text/javascript" src="./resources/scripts/index.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></body>
+    <script type="text/javascript" src="./resources/scripts/index.js"></script>
 </html>
