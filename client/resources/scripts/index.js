@@ -368,3 +368,139 @@ function getSessionHours(session){
 // }
 
 // </h5><button class=\"btn btn-outline-primary\" onclick=\"selectedSession("+ session.sessionID +")\">Select</button>
+
+
+//login functions
+
+function loginCheck(){
+    if (localStorage.getItem('userLogin') == 0){
+        alert("Error: You are not logged in. Redirecting to Login page.")
+        window.location.href = "login.html";
+    } else {
+        populateAccountPage();
+    }
+}
+
+function tryLogin(){
+    var user = document.getElementById('email-input-login').value;
+    var password = document.getElementById('password-input-login').value;
+    const allCustomersURI = 'https://localhost:5001/api/customers';
+    const allTrainersURI = 'https://localhost:5001/api/trainers';
+    const allAdminsURI = 'https://localhost:5001/api/admins';
+    fetch(allCustomersURI).then(function(response){
+        return response.json();
+    }).then(function(json){
+        json.some((customer)=>{
+            console.log(user+" "+password);
+            console.log(customer.customerEmail+" "+customer.customerPassword);
+            if (user == customer.customerEmail && password == customer.customerPassword){
+                console.log("logging in as customer");
+                cLoginFunction(customer);
+                return true;
+            } else {
+                console.log("not logging in as customer");
+                fetch(allTrainersURI).then(function(response){
+                    return response.json();
+                }).then(function(json){
+                    json.some((trainer)=>{
+                        if (user == trainer.trainerEmail && password == trainer.trainerPassword){
+                            console.log("logging in as trainer");
+                            tLoginFunction(trainer);
+                            return true;
+                        } else {
+                            console.log("not logging in as trainer");
+                            fetch(allAdminsURI).then(function(response){
+                                return response.json();
+                            }).then(function(json){
+                                json.some((admin)=>{
+                                    if(user == admin.adminEmail && password == admin.adminPassword){
+                                        console.log("logging in as admin");
+                                        aLoginFunction(admin);
+                                        return true;
+                                    }
+                                })
+                            })
+                        }
+                    })
+                })
+            }
+        })
+    })
+}
+
+function cLoginFunction(user){
+    console.log("logged in as " +user.customerEmail);
+    localStorage.setItem('userLogin', user.id);
+    localStorage.setItem('userType', 1);
+    window.location.href = "account.html";
+    // alert("logged in as "+user.customerFName+", "+user.customerEmail);
+}
+
+function tLoginFunction(user){
+    console.log("logged in as " +user.trainerEmail);
+    localStorage.setItem('userLogin', user.id);
+    localStorage.setItem('userType', 2);
+    window.location.href = "account.html";
+}
+
+function aLoginFunction(user){
+    console.log("logged in as " +user.adminEmail);
+    localStorage.setItem('userLogin', user.id);
+    localStorage.setItem('userType', 3);
+    window.location.href = "account.html";
+}   
+
+function populateAccountPage(){
+    console.log("populating account info");
+    console.log(localStorage.getItem('userType'));
+    if (localStorage.getItem('userType')==1) {
+        console.log("customer account");
+        document.getElementById('a_type').innerHTML="Customer Account";
+        const singleCustomersURI = 'https://localhost:5001/api/customers/'+localStorage.getItem('userLogin');
+        fetch(singleCustomersURI).then(function(response){
+            return response.json();
+        }).then(function(customer){
+            document.getElementById('a_fname').placeholder=customer.customerFName;
+            document.getElementById('a_lname').placeholder=customer.customerLName;
+            document.getElementById('a_balance').placeholder="$"+customer.customerBalance;
+            document.getElementById('a_phoneno').placeholder=phoneNoFormat(customer.customerPhoneNo);
+            document.getElementById('a_email').placeholder=customer.customerEmail;
+        })
+    } else if (localStorage.getItem('userType')==2) {
+        document.getElementById('a_type').innerHTML="Trainer Account";
+            const singleTrainersURI = 'https://localhost:5001/api/trainers/'+localStorage.getItem('userLogin');
+            fetch(singleTrainersURI).then(function(response){
+                return response.json();
+            }).then(function(trainer){
+                document.getElementById('a_fname').placeholder=trainer.trainerFName;
+                document.getElementById('a_lname').placeholder=trainer.trainerLName;
+                document.getElementById('a_balance').placeholder="$"+trainer.trainerBalance;
+                document.getElementById('a_phoneno').placeholder=phoneNoFormat(trainer.trainerPhoneNo);
+                document.getElementById('a_email').placeholder=trainer.trainerEmail;
+            })
+    } else if (localStorage.getItem('userType')==3) {
+        document.getElementById('a_type').innerHTML="Admin Account";
+            const singleAdminsURI = 'https://localhost:5001/api/admins/'+localStorage.getItem('userLogin');
+            fetch(singleAdminsURI).then(function(response){
+                return response.json();
+            }).then(function(admin){
+                document.getElementById('a_fname').style.display="none";
+                document.getElementById('a_lname').style.display="none";
+                document.getElementById('a_balance').style.display="none";
+                document.getElementById('a_phoneno').style.display="none";
+                document.getElementById('_fname').style.display="none";
+                document.getElementById('_lname').style.display="none";
+                document.getElementById('_balance').style.display="none";
+                document.getElementById('_phoneno').style.display="none";
+                document.getElementById('a_email').placeholder=admin.adminEmail;
+            })
+        }
+}
+
+function phoneNoFormat(phoneNo) {
+    phoneNo = phoneNo.replace(/[^\d]/g, "");
+    if (phoneNo.length == 10) {
+        return phoneNo.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+    }
+    return null;
+}
