@@ -23,11 +23,15 @@ function checkEmailMatch() {
 //jquery
 $(document).ready(function() {
     $('#datepicker').datepicker({
+        onSelect: function(date) {
+            getSessionsByDate(date)
+         },
         changeMonth: true,
         changeYear: true,
         showButtonPanel: true,
-        dateFormat: "mm/d/yy"
-    });
+        dateFormat: "mm/d/yy",
+        minDate: new Date()
+        });
 });
 
 var Trainer1 = {
@@ -85,7 +89,7 @@ var Session3  = {
     SessionID: 3,
     IsCanceled: false,
     DateCreated: date1,
-    DateOfSession: date1,
+    DateOfSession: new Date(2021,5,26,0,0,0,0),
     PriceOfSession: 100,
     SessionLength: 30,
     SessionDescription: "test description 2",
@@ -109,11 +113,15 @@ function dateToYMD(cDate) {
     return '' + (m<=9 ? '0' + m : m) + '/' + (d <= 9 ? '0' + d : d) + '/' + y;
 }
 
-function selectedSession(Session) {
-    document.getElementById("s_date").placeholder=dateToYMD(Session.DateOfSession);
-    document.getElementById("s_price").placeholder="$"+Session.PriceOfSession;
-    document.getElementById("s_trainer").placeholder=getFullName(Trainer1.TrainerFName, Trainer1.TrainerLName);
-    document.getElementById("s_description").placeholder=Session1.SessionDescription;
+function selectedSession(SessionID) {
+    // var index = Sessions.findIndex(session => session.id === SessionID);
+    Sessions.forEach(function(session){
+        if (session.SessionID == SessionID){
+            document.getElementById("s_date").placeholder=dateToYMD(session.DateOfSession);
+            document.getElementById("s_price").placeholder="$"+session.PriceOfSession;
+            document.getElementById("s_trainer").placeholder=getFullName(Trainer1.TrainerFName, Trainer1.TrainerLName);
+            document.getElementById("s_description").placeholder=session.SessionDescription;
+        }});
 }
 
 // var jsDate = $('#your_datepicker_id').datepicker('getDate');
@@ -128,29 +136,37 @@ function getSessions(){
     var Today = new Date();
     // var html = "<div class=\"card-group\">";
     var html = "";
+    var count = 0;
     Sessions.forEach(function(session){
         if (checkDate(session, Today)){
             html+=newSession(session);
+            count++;
         }});
+    if (count == 0) {
+        html="There are no sessions available";
+    }
     // html += "</div>";
     document.getElementById('sessionTable').innerHTML = html;
 }
 
 function displayToday(){
     var Today = new Date();
-    document.getElementById('datepicker').placeholder = Today.getMonth() + "/" + Today.getDate() + "/" + Today.getFullYear();
+    document.getElementById('datepicker').placeholder = dateToYMD(Today);
     getSessions();
 }
 
 function newSession(session){
-    return "<div class=\"card card-signin\"><div class=\"card-body\"><h5 class=\"card-title\">"+ "Session " + session.SessionID +"</h5><h6 class=\"card-subtitle mb-2 text-muted\">"+ "Trainer: " + getFullName(Trainer1.TrainerFName, Trainer1.TrainerLName) +"</h6><p class=\"card-text\">"+ session.SessionDescription +"</p><button class=\"btn btn-outline-primary\" onclick=\"selectedSession("+ session +")\">Select Session</button></div><div class=\"card-footer\"><p class=\"card-text\">"+ "Added on " + dateToYMD(session.DateCreated) +"</p></div></div>"
+    return "<div class=\"card card-signin\"><div class=\"card-body\"><h5 class=\"card-title\">"+ "Session " + session.SessionID +"</h5><h6 class=\"card-subtitle mb-2 text-muted\">"+ "Trainer: " + getFullName(Trainer1.TrainerFName, Trainer1.TrainerLName) +"</h6><p class=\"card-text\">"+ session.SessionDescription +"</p></div><div class=\"card-footer\"><p class=\"card-text\">"+ "Added on " + dateToYMD(session.DateCreated) +"<button class=\"btn btn-outline-primary\" onclick=\"selectedSession("+ session.SessionID +")\">Select</button></p></div></div>"
 }
 
 function checkDate(Session, Date){
     var day = getDay(Session.DateOfSession)
     var month = getMonth(Session.DateOfSession)
     var year = getYear(Session.DateOfSession)
-    if (day == Date.getDate() && year == Date.getFullYear() && month == Date.getMonth()){
+    var _day = getDay(Date)
+    var _month = getMonth(Date)
+    var _year = getYear(Date)
+    if (day == _day && year == _year && month == _month){
         return true;
     } else {
         return false;
@@ -172,8 +188,7 @@ function getYear(date){
     return newDate.getFullYear();
 }
 
-function getSessionsByDate() {
-    var date = document.getElementById('datepicker').placeholder();
+function getSessionsByDate(date) {
     // var html = "<div class=\"card-group\">";
     var html = "";
     Sessions.forEach(function(session){
