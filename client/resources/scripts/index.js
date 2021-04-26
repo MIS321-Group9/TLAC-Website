@@ -382,29 +382,54 @@ function checkButton() {
         fetch(singleCustomersURI).then(function(response){
             return response.json();
         }).then(function(customer){
-            document.getElementById('login-link').style.display="none";
-            document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(customer.customerFName, customer.customerLName);
-            document.getElementById('signup-link').href="account.html";
+            document.getElementById('signup-link').innerHTML="Logout";
+            document.getElementById('signup-link').onclick=logoutButton;
+            //document.getElementById('login-link').style.display="none";
+            document.getElementById('login-link').innerHTML="Welcome, "+getFullName(customer.customerFName, customer.customerLName);
+            document.getElementById('login-link').href="account.html";
         })
     } else if (localStorage.getItem('userType')==2) {
         const singleTrainersURI = 'https://localhost:5001/api/trainers/'+localStorage.getItem('userLogin');
         fetch(singleTrainersURI).then(function(response){
             return response.json();
         }).then(function(trainer){
-            document.getElementById('login-link').style.display="none";
-            document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(trainer.trainerFName, trainer.trainerLName);
-            document.getElementById('signup-link').href="account.html";
+            document.getElementById('signup-link').innerHTML="Logout";
+            document.getElementById('signup-link').onclick=logoutButton;
+            //document.getElementById('login-link').style.display="none";
+            document.getElementById('login-link').innerHTML="Welcome, "+getFullName(trainer.trainerFName, trainer.trainerLName);
+            document.getElementById('login-link').href="account.html";
         })
     } else if (localStorage.getItem('userType')==3) {
         const singleAdminsURI = 'https://localhost:5001/api/admins/'+localStorage.getItem('userLogin');
         fetch(singleAdminsURI).then(function(response){
             return response.json();
         }).then(function(admin){
-            document.getElementById('login-link').style.display="none";
-            document.getElementById('signup-link').innerHTML="Admin Dashboard";
-            document.getElementById('signup-link').href="account.html";
+            document.getElementById('signup-link').innerHTML="Logout";
+            document.getElementById('signup-link').onclick=logoutButton;
+            //document.getElementById('login-link').style.display="none";
+            document.getElementById('login-link').innerHTML="Admin Dashboard";
+            document.getElementById('login-link').href="account.html";
         })
     }
+}
+
+function logoutButton(){
+    dLoginFunction();
+    checkButton();
+}
+function indexStart(){
+    checkButton();
+}
+function scheduleStart(){
+    checkButton();
+    displayToday();
+}
+function accountStart(){
+    loginCheck();
+    checkButton();
+}
+function aboutStart(){
+    checkButton();
 }
 
 function loginCheck(){
@@ -462,6 +487,12 @@ function tryLogin(){
         })
     })
 }
+// dLoginFunction logs the user into a default account (is used to log the user out whenever they click "logout")
+function dLoginFunction(){
+    localStorage.setItem('userLogin', 0);
+    localStorage.setItem('userType', 0);
+    window.location.href = "index.html";
+}
 
 function cLoginFunction(user){
     console.log("logged in as " +user.customerEmail);
@@ -500,9 +531,10 @@ function populateAccountPage(){
             document.getElementById('a_balance').placeholder="$"+customer.customerBalance;
             document.getElementById('a_phoneno').placeholder=phoneNoFormat(customer.customerPhoneNo);
             document.getElementById('a_email').placeholder=customer.customerEmail;
-            document.getElementById('login-link').style.display="none";
-            document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(customer.customerFName, customer.customerLName);
-            document.getElementById('signup-link').href="account.html";
+            
+            // document.getElementById('login-link').style.display="none";
+            // document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(customer.customerFName, customer.customerLName);
+            // document.getElementById('signup-link').href="account.html";
         })
     } else if (localStorage.getItem('userType')==2) {
         document.getElementById('a_type').innerHTML="Trainer Account";
@@ -515,9 +547,10 @@ function populateAccountPage(){
                 document.getElementById('a_balance').placeholder="$"+trainer.trainerBalance;
                 document.getElementById('a_phoneno').placeholder=phoneNoFormat(trainer.trainerPhoneNo);
                 document.getElementById('a_email').placeholder=trainer.trainerEmail;
-                document.getElementById('login-link').style.display="none";
-                document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(trainer.trainerFName, trainer.trainerLName);
-                document.getElementById('signup-link').href="account.html";
+                
+                // document.getElementById('login-link').style.display="none";
+                // document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(trainer.trainerFName, trainer.trainerLName);
+                // document.getElementById('signup-link').href="account.html";
             })
     } else if (localStorage.getItem('userType')==3) {
         document.getElementById('a_type').innerHTML="Admin Account";
@@ -534,9 +567,10 @@ function populateAccountPage(){
                 document.getElementById('_balance').style.display="none";
                 document.getElementById('_phoneno').style.display="none";
                 document.getElementById('a_email').placeholder=admin.adminEmail;
-                document.getElementById('login-link').style.display="none";
-                document.getElementById('signup-link').innerHTML="Admin Dashboard";
-                document.getElementById('signup-link').href="account.html";
+                
+                // document.getElementById('login-link').style.display="none";
+                // document.getElementById('signup-link').innerHTML="Admin Dashboard";
+                // document.getElementById('signup-link').href="account.html";
             })
         }
 }
