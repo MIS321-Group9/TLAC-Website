@@ -70,6 +70,10 @@
                       <label class="sr-only">Last Name</label>
                       <input type="text" id="lname" class="form-control" placeholder="Last Name">
                     </div>
+                    <div class="form-group">
+                      <label class="sr-only">Phone Number</label>
+                      <input type="text" id="phonenumber" class="form-control" placeholder="Phone Number">
+                    </div>
                     <hr class="my-4">
                     <div class="form-group">
                         <label class="sr-only">Email</label>
@@ -93,7 +97,7 @@
                     <div class="registrationFormAlert" id="divCheckPasswordMatch">
                     </div>
                     <hr class="my-4">
-                    <button type="submit" class="btn btn-outline-primary btn-md btn-block">Submit</button>
+                    <button type="button" class="btn btn-outline-primary btn-md btn-block" onclick="postCustomer();">Submit</button>
                     <hr class="my-4">
                     <p class="text-center">Already have an account? <a href="login.html">Log In</a></p>
                 </form>

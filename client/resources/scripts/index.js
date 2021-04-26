@@ -441,6 +441,34 @@ function loginCheck(){
     }
 }
 
+// CREATES A CUSTOMER ACCOUNT
+function postCustomer(){
+    const postCustApiUrl="https://localhost:5001/api/customers";
+    const customerFName = document.getElementById("fname").value;
+    const customerLName = document.getElementById("lname").value;
+    const customerPhoneNo = document.getElementById("phonenumber").value;
+    const customerEmail = document.getElementById("email").value;
+    const customerPassword = document.getElementById("password").value;
+
+    fetch(postCustApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            customerfname: customerFName,
+            customerlname: customerLName,
+            customerphoneno: customerPhoneNo,
+            customeremail: customerEmail,
+            customerpassword: customerPassword
+        })
+    })
+    .then((response)=>{
+        console.log(response);
+    })
+}
+
 function tryLogin(){
     var user = document.getElementById('email-input-login').value;
     var password = document.getElementById('password-input-login').value;
