@@ -514,7 +514,9 @@ function aLoginFunction(user){
     localStorage.setItem('userLogin', user.id);
     localStorage.setItem('userType', 3);
     window.location.href = "account.html";
-}   
+}
+
+
 
 function populateAccountPage(){
     console.log("populating account info");
