@@ -26,7 +26,7 @@ namespace API.Models.Admins
                 allSessions.Add(new Admin(){
                     ID=rdr.GetInt32(0),
                     AdminEmail=rdr.GetString(1),
-                    AdminPassword=rdr.GetString(1)
+                    AdminPassword=rdr.GetString(2)
                 });
             }
 
@@ -53,7 +53,7 @@ namespace API.Models.Admins
             return new Admin(){
                 ID=rdr.GetInt32(0),
                 AdminEmail=rdr.GetString(1),
-                AdminPassword=rdr.GetString(1)
+                AdminPassword=rdr.GetString(2)
             };
         }
 
@@ -78,7 +78,7 @@ namespace API.Models.Admins
             return new Admin(){
                 ID=rdr.GetInt32(0),
                 AdminEmail=rdr.GetString(1),
-                AdminPassword=rdr.GetString(1)
+                AdminPassword=rdr.GetString(2)
             };
         }
     }
