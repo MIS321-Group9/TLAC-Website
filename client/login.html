@@ -66,8 +66,13 @@
                         <input type="text" class="form-control" placeholder="Email" id="email-input-login">
                     </div>
                     <div class="form-group">
-                        <label class="sr-only">Password</label>
-                        <input type="password" class="form-control" id="password-input-login" placeholder="Password">
+                        <div class="input-group mb-3">
+                          <label class="sr-only">Password</label>
+                          <input type="password" class="form-control" id="password-input-login" placeholder="Password">
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" onclick="passwordToggle()">Show</button>
+                          </div>
+                        </div>
                     </div>
                     <p class="text-center">Don't have an account? <a href="signup.html">Sign Up</a></p>
                     <button type="button" class="btn btn-outline-primary btn-md" onclick="tryLogin()">Login</button>

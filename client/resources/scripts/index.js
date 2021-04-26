@@ -274,6 +274,7 @@ function displayToday(){
     var Today = new Date();
     document.getElementById('datepicker').placeholder = dateToYMD(Today);
     getSessions();
+    populateAccountPage();
 }
 
 function newSession(session){
@@ -371,6 +372,40 @@ function getSessionHours(session){
 
 
 //login functions
+
+function checkButton() {
+    console.log("populating button info");
+    console.log(localStorage.getItem('userType'));
+    if (localStorage.getItem('userType')==1) {
+        console.log("customer account");
+        const singleCustomersURI = 'https://localhost:5001/api/customers/'+localStorage.getItem('userLogin');
+        fetch(singleCustomersURI).then(function(response){
+            return response.json();
+        }).then(function(customer){
+            document.getElementById('login-link').style.display="none";
+            document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(customer.customerFName, customer.customerLName);
+            document.getElementById('signup-link').href="account.html";
+        })
+    } else if (localStorage.getItem('userType')==2) {
+        const singleTrainersURI = 'https://localhost:5001/api/trainers/'+localStorage.getItem('userLogin');
+        fetch(singleTrainersURI).then(function(response){
+            return response.json();
+        }).then(function(trainer){
+            document.getElementById('login-link').style.display="none";
+            document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(trainer.trainerFName, trainer.trainerLName);
+            document.getElementById('signup-link').href="account.html";
+        })
+    } else if (localStorage.getItem('userType')==3) {
+        const singleAdminsURI = 'https://localhost:5001/api/admins/'+localStorage.getItem('userLogin');
+        fetch(singleAdminsURI).then(function(response){
+            return response.json();
+        }).then(function(admin){
+            document.getElementById('login-link').style.display="none";
+            document.getElementById('signup-link').innerHTML="Admin Dashboard";
+            document.getElementById('signup-link').href="account.html";
+        })
+    }
+}
 
 function loginCheck(){
     if (localStorage.getItem('userLogin') == 0){
@@ -512,4 +547,12 @@ function phoneNoFormat(phoneNo) {
         return phoneNo.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
     }
     return null;
+}
+
+function passwordToggle(){
+    if (document.getElementById('password-input-login').type=="text"){
+        document.getElementById('password-input-login').type="password"
+    } else if (document.getElementById('password-input-login').type=="password"){
+        document.getElementById('password-input-login').type="text";
+    }
 }
