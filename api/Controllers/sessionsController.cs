@@ -59,24 +59,24 @@ namespace api.Controllers
             deleteObject.DeleteSession(id);
         }
 
-        // BOOK SESSION: api/session/5
-        [EnableCors("Book")]
-        [HttpPut("{id}", Name = "BookSession")]
-        public void Book(int custId, int id)
-        {
-            IBookSession modifyObject = new BookSession();
-            modifyObject.BookSession(custId, id);
-        }
+        // // BOOK SESSION: api/session/5
+        // [EnableCors("Book")]
+        // [HttpPut("{id}", Name = "BookSession")]
+        // public void Book(int custId, int id)
+        // {
+        //     IBookSession modifyObject = new BookSession();
+        //     modifyObject.BookSession(custId, id);
+        // }
 
-        // CANCEL SESSION: api/session/5
-        [EnableCors("Cancel")]
-        [Route("sessions/{id}/cancel")]
-        //[HttpPut("{id}")]
-        //[NonAction]
-        protected void Cancel(int id)
-        {
-            ICancelSession modifyObject = new CancelSession();
-            modifyObject.CancelSession(id);
-        }
+        // // CANCEL SESSION: api/session/5
+        // [EnableCors("AnotherPolicy")]
+        // //[Route("sessions/{id}")]
+        // [HttpPut("{id}")]
+        // //[NonAction]
+        // public void Cancel(int id)
+        // {
+        //     ICancelSession modifyObject = new CancelSession();
+        //     modifyObject.CancelSession(id);
+        // }
     }
 }

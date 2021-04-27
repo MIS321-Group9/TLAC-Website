@@ -50,6 +50,7 @@ namespace API
                             .AllowAnyMethod();
                 });
             });
+            
 
             services.AddSwaggerGen (c =>
             {
@@ -84,11 +85,6 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapControllerRoute(
-                    name: "cancelSession",
-                    pattern: "{controller=sessions}/{id?}/{action=cancel}"
-                    
-                );
             });
         }
     }
