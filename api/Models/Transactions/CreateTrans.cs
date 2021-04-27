@@ -24,28 +24,58 @@ namespace API.Models.Transactions
 
         void ICreateTrans.CreateTrans(Transaction trans)
         {
-            ConnectionString myConnection = new ConnectionString();
-            string cs = myConnection.cs;
+            if (trans.CustomerID == 0)
+            {
+                ConnectionString myConnection = new ConnectionString();
+                string cs = myConnection.cs;
 
-            using var con = new MySqlConnection(cs);
-            con.Open();
+                using var con = new MySqlConnection(cs);
+                con.Open();
+                string stm = @"INSERT INTO ttransactions(isrefunded, transactiondate, currentbalance, price, sessionid, trainerid) VALUES(@isrefunded, @transactiondate, @currentbalance, @price, @sessionid, @trainerid)";;
 
-            string stm = @"INSERT INTO ttransactions(isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid) VALUES(@isrefunded, @transactiondate, @currentbalance, @price, @sessionid, @discountid, @cardid, @customerid, @trainerid)";
+                
+                //string stm = @"INSERT INTO ttransactions(isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid) VALUES(@isrefunded, @transactiondate, @currentbalance, @price, @sessionid, @discountid, @cardid, @customerid, @trainerid)";
 
-            using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@isrefunded", trans.IsRefunded);
-            cmd.Parameters.AddWithValue("@transactiondate", DateTime.Now);
-            cmd.Parameters.AddWithValue("@currentbalance", trans.CurrentBalance);
-            cmd.Parameters.AddWithValue("@price", trans.Price);
-            cmd.Parameters.AddWithValue("@sessionid", trans.SessionID);
-            cmd.Parameters.AddWithValue("@discountid", trans.DiscountID);
-            cmd.Parameters.AddWithValue("@cardid", trans.CardID);
-            cmd.Parameters.AddWithValue("@customerid", trans.CustomerID);
-            cmd.Parameters.AddWithValue("@trainerid", trans.TrainerID);
+                using var cmd = new MySqlCommand(stm, con);
+                cmd.Parameters.AddWithValue("@isrefunded", false);
+                cmd.Parameters.AddWithValue("@transactiondate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@currentbalance", trans.CurrentBalance);
+                cmd.Parameters.AddWithValue("@price", trans.Price);
+                cmd.Parameters.AddWithValue("@sessionid", trans.SessionID);
+                //cmd.Parameters.AddWithValue("@discountid", null);
+                //cmd.Parameters.AddWithValue("@cardid", null);
+                cmd.Parameters.AddWithValue("@trainerid", trans.TrainerID);
 
-            cmd.Prepare();
+                cmd.Prepare();
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
+            }
+            else if (trans.TrainerID == 0)
+            {
+                ConnectionString myConnection = new ConnectionString();
+                string cs = myConnection.cs;
+
+                using var con = new MySqlConnection(cs);
+                con.Open();
+                string stm = @"INSERT INTO ttransactions(isrefunded, transactiondate, currentbalance, price, sessionid, customerid) VALUES(@isrefunded, @transactiondate, @currentbalance, @price, @sessionid, @customerid)";
+
+                
+                //string stm = @"INSERT INTO ttransactions(isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid) VALUES(@isrefunded, @transactiondate, @currentbalance, @price, @sessionid, @discountid, @cardid, @customerid, @trainerid)";
+
+                using var cmd = new MySqlCommand(stm, con);
+                cmd.Parameters.AddWithValue("@isrefunded", false);
+                cmd.Parameters.AddWithValue("@transactiondate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@currentbalance", trans.CurrentBalance);
+                cmd.Parameters.AddWithValue("@price", trans.Price);
+                cmd.Parameters.AddWithValue("@sessionid", trans.SessionID);
+                //cmd.Parameters.AddWithValue("@discountid", null);
+                //cmd.Parameters.AddWithValue("@cardid", null);
+                cmd.Parameters.AddWithValue("@customerid", trans.CustomerID);
+
+                cmd.Prepare();
+
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

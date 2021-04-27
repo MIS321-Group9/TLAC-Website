@@ -35,7 +35,6 @@ namespace API.Models.Sessions
             using var cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@sessionlength", session.SessionLength);
             cmd.Parameters.AddWithValue("@datecreated", DateTime.Now);
-            //cmd.Parameters.AddWithValue("@dateofsession", DateTime.Now);
             cmd.Parameters.AddWithValue("@dateofsession", session.DateOfSession);
             cmd.Parameters.AddWithValue("@priceofsession", session.PriceOfSession);
             cmd.Parameters.AddWithValue("@sessiondescription", session.SessionDescription);
