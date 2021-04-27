@@ -52,11 +52,11 @@ function getCustomers(){
 }
 
 function cancelSession(){
-    const sessionID = document.getElementById("id1").value;
-    const cancelSessionUrl="https://localhost:5001/api/sessions/"+sessionID;
+    const sessionID = document.getElementById("sessionid").value;
+    const cancelSessionUrl="https://localhost:5001/api/sessions/"+sessionID+"/cancel";
 
     fetch(cancelSessionUrl, {
-        method: "put",
+        method: "cancelSession",
         headers: {
             "Accept": 'application/json',
             "Content-Type": 'application/json'
@@ -101,7 +101,7 @@ function postCustomer(){
 
 // CREATES A SESSION
 function postSession(){
-    const postSessApiUrl="https://localhost:5001/api/sessions";
+    const postSessionApiUrl="https://localhost:5001/api/sessions";
 
     const sessionLength = document.getElementById("length").value;
     const dateOfSession = document.getElementById("date").value;
@@ -111,19 +111,20 @@ function postSession(){
     const adminID = document.getElementById("adminid").value;
 
 
-    fetch(postSessApiUrl, {
+    fetch(postSessionApiUrl, {
         method: "POST",
         headers: {
             "Accept": 'application/json',
             "Content-Type": 'application/json'
         },
         body: JSON.stringify({
-            sessionlength: sessionLength,
-            dateofsession: dateOfSession,
-            priceofsession: priceOfSession,
+            sessionlength: parseInt(sessionLength),
+            dateofsession: new Date(dateOfSession),
+            priceofsession: parseFloat(priceOfSession),
             sessiondescription: sessionDesc,
-            trainerid: trainerID,
-            adminid: adminID
+            trainerid: parseInt(trainerID),
+            adminid: parseInt(adminID)
+            
         })
     })
     .then((response)=>{

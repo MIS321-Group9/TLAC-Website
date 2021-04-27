@@ -8,9 +8,9 @@
 </head>
 <body onload = "getSessions()">
     <h1>DEBUG TESTING</h1>
-    <h3>All Customers</h3>
+    <h3>All Sessions</h3>
     <script type="text/javascript" src="resources/scripts/debug.js"></script>
-    <div id="customers">
+    <div id="sessions">
 
     </div>
     <div>
@@ -43,6 +43,12 @@
             <label for="text">Admin ID</label>
             <input type="text" name="AdminID" id="adminid"/>
             <input type="submit" value="Submit" onclick="postSession()">
+        </form>
+        <form onsubmit="return false;" method="put">
+            <h3>Cancel Session</h3>
+            <label for="text">Session ID</label>
+            <input type="text" name="Session ID" id="sessionid"/>
+            <input type="submit" value="Submit" onclick="cancelSession()">
         </form>
         
     </div>
