@@ -13,6 +13,8 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
   </head>
 <!--<body onload="displayToday()"> -->
 <body onload="scheduleStart()">
@@ -34,9 +36,9 @@
           <li class="nav-item active">
             <a class="nav-link" href="schedule.html">Schedule<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="about.html">About</a>
-          </li>
+          </li> -->
         </ul>
         <span class="navbar-text">
           <ul class="navbar-nav mr-auto">
@@ -64,6 +66,7 @@
         </div>
       </div> -->
 
+      <!-- customer schedule -->
       <div id="customer-schedule" class="container centered">
         <div class="row">
             <div class="col col-md-6 mx-auto">
@@ -97,15 +100,17 @@
             </div>
         </div>
 
+      <!-- trainer schedule -->
       <div id="trainer-schedule" class="container centered">
         <div class="row">
             <div class="col col-md-6 mx-auto">
                 <div class="card card-signin my-5 sessioncard">
                     <div class="card-body">
                       <h5 class="card-title text-center">Trainer Scheduling</h5>
-                        <input class="form-control" type="text" id="datepicker" placeholder="Select a Date">
+                        <input class="form-control" type="text" id="datepicker-trainer" placeholder="Select a Date">
                       <hr class="my-4">
-                      <div class="container scroll" id="sessionTable">
+                      <div class="container scroll">
+                        <p id="trainerSessionTable" class="text-center">Select a date to get started.</p>
                       </div>
                     </div>
                 </div>
@@ -114,24 +119,51 @@
               <div class="card card-signin my-5">
                 <div class="card-body">
                   <h5 class="card-title text-center">Session Information</h5>
-                  <input id="s_date" class="form-control" readonly disabled>
-                  <p>Date</p>
-                  <input id="s_price" class="form-control" readonly disabled>
-                  <p>Price</p>
-                  <input id="s_trainer" class="form-control" readonly disabled>
-                  <p>Trainer</p>
-                  <input id="s_description" class="form-control" readonly disabled>
-                  <p>Description</p>
+                  <input id="ts_date" class="form-control" readonly disabled>
+                 <div class="form-group">
+                  <hr class="my-4">
+                  <div class="form-group">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" onclick="timeLeft()"><i class="fa fa-arrow-circle-left"></i></button>
+                      </div>
+                      <label class="sr-only">Time</label>
+                        <input type="type" class="form-control text-center" id="time-selector" placeholder="Choose a starting time" readonly disabled>
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary" type="button" onclick="timeRight()"><i class="fa fa-arrow-circle-right"></i></button>
+                        </div>
+                      </div>
+                      <div id="time-warning">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div> -->
+                      <hr class="my-4">
+                      <input id="ts_price" class="form-control" placeholder="$">
+                      <hr class="my-4">
+                    <!-- <div class="input-group-append">
+                      <span class="input-group-text">.00</span>
+                    </div>
+                  </div> -->
+
+                  <input id="ts_description" class="form-control" placeholder="Additional session information">
+                  <hr class="my-4">
                 </div>
                 <div class="card-footer text-center">
-                  <button type="text" class="btn btn-outline-primary" id="booksession-button" onclick="bookSession()">Book Session</button>
+                  <button type="text" class="btn btn-outline-primary" id="postsession-button" onclick="postSession()">Create Session</button>
+                  <button type="text" class="btn btn-outline-secondary" id="cancelsession-button" onclick="cancelSession()">Cancel Session</button>
                 </div>
               </div>
             </div>
         </div>
       </div>
 
-      <div id="admin-schedule" class="container centered">
+      <!-- admin schedule -->
+      <div id="admin-schedule" class="container centered" display="none">
         <div class="row">
             <div class="col col-md-6 mx-auto">
                 <div class="card card-signin my-5 sessioncard">
@@ -139,7 +171,7 @@
                       <h5 class="card-title text-center">Admin Scheduling</h5>
                         <input class="form-control" type="text" id="datepicker" placeholder="Select a Date">
                       <hr class="my-4">
-                      <div class="container scroll" id="sessionTable">
+                      <div class="container scroll" id="adminSessionTable">
                       </div>
                     </div>
                 </div>

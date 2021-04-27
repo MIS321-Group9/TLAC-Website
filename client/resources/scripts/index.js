@@ -33,10 +33,34 @@ $(document).ready(function() {
         changeYear: true,
         showButtonPanel: true,
         dateFormat: "mm/d/yy",
-        // minDate: new Date(),
+        minDate: new Date(),
         autoclose: true, 
         todayHighlight: true
         });
+    $('#datepicker-trainer').datepicker({
+        onSelect: function(date) {
+            console.log(date);
+            trainerSessions(date);
+            },
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: "mm/d/yy",
+        minDate: new Date(),
+        autoclose: true, 
+        todayHighlight: true
+        });
+    $('.ts_time').timepicker({
+        // timeFormat: 'h:mm p',
+        interval: 60,
+        minTime: '8:00am',
+        maxTime: '5:00pm',
+        defaultTime: '8:00am',
+        startTime: '8:00am',
+        dynamic: true,
+        dropdown: true,
+        scrollbar: true
+    });
 });
 
 // var Trainer1 = {
@@ -207,11 +231,21 @@ function selectedSession(SessionID){
                 }).then(function(json){
                     json.forEach(function(trainer){
                         if (trainer.id == session.trainerID){
-                            fname = getFullName(trainer.trainerFName, trainer.trainerLName);
-                            document.getElementById("s_date").placeholder=dateToYMD(session.dateOfSession);
-                            document.getElementById("s_trainer").placeholder=fname;
-                            document.getElementById("s_price").placeholder="$"+session.priceOfSession;
-                            document.getElementById("s_description").placeholder=session.sessionDescription;
+                            if(localStorage.getItem('userType')==2){
+                                fname = getFullName(trainer.trainerFName, trainer.trainerLName);
+                                // document.getElementById('ts-time').placeholder=getSessionHours(session);
+                                document.getElementById('ts_price').placeholder=session.priceOfSession;
+                                document.getElementById('ts_description').placeholder=session.sessionDescription;
+                                document.getElementById("postsession-button").onclick = postSession(SessionID);
+                                document.getElementById("cancelsession-button").onclick = cancelSession(SessionID);
+                            } else {
+                                fname = getFullName(trainer.trainerFName, trainer.trainerLName);
+                                document.getElementById("s_date").placeholder=dateToYMD(session.dateOfSession);
+                                document.getElementById("s_trainer").placeholder=fname;
+                                document.getElementById("s_price").placeholder="$"+session.priceOfSession;
+                                document.getElementById("s_description").placeholder=session.sessionDescription;
+                                document.getElementById("booksession-button").onclick = bookSession(SessionID);
+                            }
                         }
                     })
                 })
@@ -273,9 +307,15 @@ function getSessions(){
 
 function displayToday(){
     var Today = new Date();
-    document.getElementById('datepicker').placeholder = dateToYMD(Today);
+    if (localStorage.getItem('userType')==2) {
+        document.getElementById('datepicker-trainer').placeholder = dateToYMD(Today);
+    } else {
+        document.getElementById('datepicker').placeholder = dateToYMD(Today);
+    }
     getSessions();
-    populateAccountPage();
+    if(document.URL.includes="account.html"){
+        populateAccountPage();
+    }
 }
 
 function newSession(session){
@@ -424,7 +464,10 @@ function indexStart(){
 }
 function scheduleStart(){
     checkButton();
-    displayToday();
+    if(localStorage.getItem('userLogin') == 2){
+        document.getElementById('time-alert').style.visibility = 'hidden';
+        trainerSessionsToday();
+    }
     checkScheduleType();
 }
 function accountStart(){
@@ -625,36 +668,43 @@ function populateAccountPage(){
     console.log(localStorage.getItem('userType'));
     if (localStorage.getItem('userType')==1) {
         console.log("customer account");
-        document.getElementById('a_type').innerHTML="Customer Account";
+        if (document.URL.includes("account.html")){
+            document.getElementById('a_type').innerHTML="Customer Account";
+        }
         const singleCustomersURI = 'https://localhost:5001/api/customers/'+localStorage.getItem('userLogin');
         fetch(singleCustomersURI).then(function(response){
             return response.json();
         }).then(function(customer){
-            document.getElementById('a_fname').placeholder=customer.customerFName;
-            document.getElementById('a_lname').placeholder=customer.customerLName;
-            document.getElementById('a_balance').placeholder="$"+customer.customerBalance;
-            document.getElementById('a_phoneno').placeholder=phoneNoFormat(customer.customerPhoneNo);
-            document.getElementById('a_email').placeholder=customer.customerEmail;
-            document.getElementById('a_iscertified').style.display="none";
-            document.getElementById('_iscertified').style.display="none";
+            if (document.URL.includes("account.html")){
+                document.getElementById('a_fname').placeholder=customer.customerFName;
+                document.getElementById('a_lname').placeholder=customer.customerLName;
+                document.getElementById('a_balance').placeholder="$"+customer.customerBalance;
+                document.getElementById('a_phoneno').placeholder=phoneNoFormat(customer.customerPhoneNo);
+                document.getElementById('a_email').placeholder=customer.customerEmail;
+                document.getElementById('a_iscertified').style.display="none";
+                document.getElementById('_iscertified').style.display="none";
+            }
             
             // document.getElementById('login-link').style.display="none";
             // document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(customer.customerFName, customer.customerLName);
             // document.getElementById('signup-link').href="account.html";
         })
     } else if (localStorage.getItem('userType')==2) {
-        document.getElementById('a_type').innerHTML="Trainer Account";
+        if (document.URL.includes("account.html")){
+            document.getElementById('a_type').innerHTML="Trainer Account";
+        }
             const singleTrainersURI = 'https://localhost:5001/api/trainers/'+localStorage.getItem('userLogin');
             fetch(singleTrainersURI).then(function(response){
                 return response.json();
             }).then(function(trainer){
-                document.getElementById('a_fname').placeholder=trainer.trainerFName;
+                if (document.URL.includes("account.html")){
+                    document.getElementById('a_fname').placeholder=trainer.trainerFName;
                 document.getElementById('a_lname').placeholder=trainer.trainerLName;
                 document.getElementById('a_balance').placeholder="$"+trainer.trainerBalance;
                 document.getElementById('a_phoneno').placeholder=phoneNoFormat(trainer.trainerPhoneNo);
                 document.getElementById('a_email').placeholder=trainer.trainerEmail;
                 document.getElementById('a_iscertified').placeholder=booleanFormat(trainer.isCertified);
-                
+                }
                 // document.getElementById('login-link').style.display="none";
                 // document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(trainer.trainerFName, trainer.trainerLName);
                 // document.getElementById('signup-link').href="account.html";
@@ -713,35 +763,261 @@ function passwordToggle(){
 
 
 // scheduling functions - logic
-function bookSession(){
-    alert("book session");
+function bookSession(SessionID){
+    const sessionID = SessionID;
+    const customerID = localStorage.getItem('userLogin');
+    const bookSessionUrl="https://localhost:5001/api/booksessions/"+sessionID+"/"+customerID;
+
+    fetch(bookSessionUrl, {
+        method: "PUT",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+    })
+    .then((response)=>{
+        console.log(response);
+        getSessions();
+    })
 }
 
 function checkScheduleType(){
     console.log("checking schedule type");
+
+    document.getElementById('trainer-schedule').style.visibility = 'hidden';
+    document.getElementById('admin-schedule').style.visibility = 'hidden';
+    document.getElementById('customer-schedule').style.visibility = 'hidden';
+    document.getElementById('booksession-button').disabled = false;
+
+    console.log(localStorage.getItem('userType'));
+
+    if (localStorage.getItem('userType')==null) {
+        console.log('no user');
+        document.getElementById('booksession-button').disabled = true;
+        document.getElementById('customer-schedule').style.visbility = 'visible';
+    }
+
     if (localStorage.getItem('userType')==0) {
         console.log('no user');
-        document.getElementById('customer-schedule').hidden = false;
-        document.getElementById('trainer-schedule').hidden = true;
-        document.getElementById('admin-schedule').hidden = true;
         document.getElementById('booksession-button').disabled = true;
-    } else if (localStorage.getItem('userType')==1) {
+        document.getElementById('customer-schedule').style.visbility = 'visible';
+    }
+    
+    if (localStorage.getItem('userType')==1) {
         console.log('client user');
-        document.getElementById('customer-schedule').hidden = false;
-        document.getElementById('trainer-schedule').hidden = true;
-        document.getElementById('admin-schedule').hidden = true;
-        document.getElementById('booksession-button').disabled = false;
-    } else if (localStorage.getItem('userType')==2) {
+        document.getElementById('customer-schedule').style.visibility = 'visible';
+    }
+    
+    if (localStorage.getItem('userType')==2) {
         console.log('trainer user');
-        document.getElementById('customer-schedule').hidden = true;
-        document.getElementById('trainer-schedule').hidden = false;
-        document.getElementById('admin-schedule').hidden = true;
-        document.getElementById('booksession-button').disabled = false;
-    } else if (localStorage.getItem('userType')==3) {
+        document.getElementById('trainer-schedule').style.visibility = 'visible';
+    }
+    
+    if (localStorage.getItem('userType')==3) {
         console.log('admin user');
-        document.getElementById('customer-schedule').hidden = true;
-        document.getElementById('trainer-schedule').hidden = true;
-        document.getElementById('admin-schedule').hidden = false;
-        document.getElementById('booksession-button').disabled = false;
+        document.getElementById('admin-schedule').style.visibility = 'visible';
     }
 }
+
+function postSession(){
+    const postSessionApiUrl="https://localhost:5001/api/sessions";
+    date = document.getElementById("ts_date").value;
+    const sessionLength = 1;
+    const priceOfSession = document.getElementById("ts_price").value;
+    const sessionDesc = document.getElementById("ts_description").value;
+    const trainerID = localStorage.getItem('userLogin')
+    const adminID = 0;
+
+    fetch(postSessionApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            sessionlength: parseInt(sessionLength),
+            dateofsession: new Date(getYear(date)+"-"+getMonth(date)+"-"+getDay(date)+"T"+document.getElementById('timepicker-trainer').value+":00"+":00Z"),
+            priceofsession: parseFloat(priceOfSession),
+            sessiondescription: sessionDesc,
+            trainerid: parseInt(trainerID),
+            adminid: parseInt(adminID)
+        })
+    }).then((response)=>{
+        console.log(response);
+    })
+}
+
+function trainerSessions(date) {
+    console.log("trainer sessions by date")
+    document.getElementById('ts_date').placeholder=dateToYMD(date);
+    var count = 0;
+    let html = "";
+    const allSessionsURI = 'https://localhost:5001/api/sessions';
+    // const allTrainersURI = 'https://localhost:5001/api/trainers';
+    fetch(allSessionsURI).then(function(response){
+        return response.json();
+    }).then(function(json){
+        json.forEach((session)=>{
+            if(checkDate(session, date)) {
+                console.log(session.sessionID);
+                console.log(localStorage.getItem('userLogin'))
+                if(session.id=localStorage.getItem('userLogin')){
+                    html+=newSession(session);
+                    count++;
+                }
+            }
+        });
+        if (count==0){
+            console.log("no sessions found");
+            html="<p class=\"text-center\">You have no sessions scheduled today.</p>";
+        }
+        document.getElementById('trainerSessionTable').innerHTML = html;
+    })
+}
+
+function trainerSessionsToday(){
+    console.log("trainer sessions today")
+    var Today = new Date();
+    document.getElementById('ts_date').placeholder=dateToYMD(Today);
+    var count = 0;
+    let html = "";
+    const allSessionsURI = 'https://localhost:5001/api/sessions';
+    fetch(allSessionsURI).then(function(response){
+        return response.json();
+    }).then(function(json){
+        json.forEach((session)=>{
+            if(checkDate(session, Today)) {
+                if(session.sessionID=localStorage.getItem('userLogin')){
+                    html+=newSession(session);
+                    count++;
+                }
+            }
+        });
+        if (count==0) {
+            console.log("no sessions found");
+            html="<p class=\"text-center\">You have no sessions scheduled today.</p>";
+        }
+        document.getElementById('trainerSessionTable').innerHTML = html;
+    })
+}
+
+function getSessions(){
+    var Today = new Date();
+    var count = 0;
+    let html = "";
+    const allSessionsURI = 'https://localhost:5001/api/sessions';
+    // const allTrainersURI = 'https://localhost:5001/api/trainers';
+    fetch(allSessionsURI).then(function(response){
+        return response.json();
+    }).then(function(json){
+        json.forEach((session)=>{
+            if(checkDate(session, Today))
+            html+=newSession(session);
+            count++;
+        })
+        if (count==0) {
+            html="<p class=\"text-center\">There are no sessions available</p>";
+        }
+    })
+    document.getElementById('sessionTable').innerHTML = html;
+}
+
+function cancelSession(SessionID){
+
+}
+
+function timeLeft() {
+    if (document.getElementById('time-selector').placeholder == "Choose a starting time"){
+        document.getElementById('time-selector').placeholder = '8:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '8:00'){
+        document.getElementById('time-warning').innerHTML = timeWarning;
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '9:00'){
+        document.getElementById('time-selector').placeholder = '8:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '10:00'){
+        document.getElementById('time-selector').placeholder = '9:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '11:00'){
+        document.getElementById('time-selector').placeholder = '10:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '12:00'){
+        document.getElementById('time-selector').placeholder = '11:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '1:00'){
+        document.getElementById('time-selector').placeholder = '12:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '2:00'){
+        document.getElementById('time-selector').placeholder = '1:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '3:00'){
+        document.getElementById('time-selector').placeholder = '2:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '4:00'){
+        document.getElementById('time-selector').placeholder = '3:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '5:00'){
+        document.getElementById('time-selector').placeholder = '4:00'
+        return;
+    }
+}
+
+function timeRight(){
+    if (document.getElementById('time-selector').placeholder == "Choose a starting time"){
+        document.getElementById('time-selector').placeholder = '8:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '5:00'){
+        document.getElementById('time-warning').innerHTML = timeWarning;
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '8:00'){
+        document.getElementById('time-selector').placeholder = '9:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '9:00'){
+        document.getElementById('time-selector').placeholder = '10:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '10:00'){
+        document.getElementById('time-selector').placeholder = '11:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '11:00'){
+        document.getElementById('time-selector').placeholder = '12:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '12:00'){
+        document.getElementById('time-selector').placeholder = '1:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '1:00'){
+        document.getElementById('time-selector').placeholder = '2:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '2:00'){
+        document.getElementById('time-selector').placeholder = '3:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '3:00'){
+        document.getElementById('time-selector').placeholder = '4:00'
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '4:00'){
+        document.getElementById('time-selector').placeholder = '5:00'
+        return;
+    }
+}
+
+var timeWarning = "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\"><strong>Error:</strong> We are only open between 8:00 AM-5:00 PM.<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>"
