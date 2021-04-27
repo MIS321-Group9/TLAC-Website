@@ -21,6 +21,7 @@ function checkEmailMatch() {
     }
 }
 
+
 // jquery
 $(document).ready(function() {
     $('#datepicker').datepicker({
@@ -513,8 +514,8 @@ function tryCustomerLogin(inputEmail, inputPassword){
         return response.json();
     }).then(function(json){
         json.some((customer)=>{
-            console.log(inputEmail+" "+inputPassword);
-            console.log(customer.customerEmail+" "+customer.customerPassword);
+            // console.log(inputEmail+" "+inputPassword);
+            // console.log(customer.customerEmail+" "+customer.customerPassword);
             if (inputEmail == customer.customerEmail && inputPassword == customer.customerPassword){
                 console.log("logging in as customer");
                 cLoginFunction(customer);
@@ -529,8 +530,8 @@ function tryTrainerLogin(inputEmail, inputPassword){
         return response.json();
     }).then(function(json){
         json.some((trainer)=>{
-            console.log(inputEmail+" "+inputPassword);
-            console.log(trainer.trainerEmail+" "+trainer.trainerPassword);
+            //console.log(inputEmail+" "+inputPassword);
+            //console.log(trainer.trainerEmail+" "+trainer.trainerPassword);
             if (inputEmail == trainer.trainerEmail && inputPassword == trainer.trainerPassword){
                 console.log("logging in as trainer");
                 tLoginFunction(trainer);
@@ -550,8 +551,8 @@ function tryLogin(){
         return response.json();
     }).then(function(json){
         json.some((customer)=>{
-            console.log(user+" "+password);
-            console.log(customer.customerEmail+" "+customer.customerPassword);
+            // console.log(user+" "+password);
+            // console.log(customer.customerEmail+" "+customer.customerPassword);
             if (user == customer.customerEmail && password == customer.customerPassword){
                 console.log("logging in as customer");
                 cLoginFunction(customer);
@@ -632,6 +633,8 @@ function populateAccountPage(){
             document.getElementById('a_balance').placeholder="$"+customer.customerBalance;
             document.getElementById('a_phoneno').placeholder=phoneNoFormat(customer.customerPhoneNo);
             document.getElementById('a_email').placeholder=customer.customerEmail;
+            document.getElementById('a_iscertified').style.display="none";
+            document.getElementById('_iscertified').style.display="none";
             
             // document.getElementById('login-link').style.display="none";
             // document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(customer.customerFName, customer.customerLName);
@@ -669,6 +672,8 @@ function populateAccountPage(){
                 document.getElementById('_balance').style.display="none";
                 document.getElementById('_phoneno').style.display="none";
                 document.getElementById('a_email').placeholder=admin.adminEmail;
+                document.getElementById('a_iscertified').style.display="none";
+                document.getElementById('_iscertified').style.display="none";
                 
                 // document.getElementById('login-link').style.display="none";
                 // document.getElementById('signup-link').innerHTML="Admin Dashboard";

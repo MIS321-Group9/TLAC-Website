@@ -18,7 +18,7 @@ namespace API.Models.Sessions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM tsessions ORDER BY DateOfSession DESC";
+            string stm = "SELECT * FROM tsessions";
             using var cmd = new MySqlCommand(stm, con);
 
             using MySqlDataReader rdr = cmd.ExecuteReader();
