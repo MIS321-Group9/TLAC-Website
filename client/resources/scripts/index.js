@@ -821,12 +821,24 @@ function checkScheduleType(){
 
 function postSession(){
     const postSessionApiUrl="https://localhost:5001/api/sessions";
-    date = document.getElementById("ts_date").value;
-    const sessionLength = 1;
-    const priceOfSession = document.getElementById("ts_price").value;
-    const sessionDesc = document.getElementById("ts_description").value;
-    const trainerID = localStorage.getItem('userLogin')
-    const adminID = 0;
+
+    date = document.getElementById("datepicker-trainer").value;
+    console.log(date);
+
+    var sessionLength = 1;
+    var priceOfSession = document.getElementById("ts_price").value;
+    var sessionDesc = document.getElementById("ts_description").value;
+    var trainerID = localStorage.getItem('userLogin')
+    var adminID = 0;
+    // 2021-04-19 21:13:32
+    // var dateString = (getYear(new Date(date))+"-"+(getMonth(new Date(date)))+"-"+getDay(new Date(date))+"T"+document.getElementById('time-selector').value+":00"+":00");
+    // newDate = new Date(dateString);
+    // console.log(newDate)
+
+    var time_selector = document.getElementById('time-selector').value;
+    console.log(time_selector); 
+    var stringDate = (newDate.getFullYear()+'-'+(newDate.getMonth()+1)+'-'+newDate.getDate()+"T"+time_selector+":00Z")
+    console.log(stringDate);
 
     fetch(postSessionApiUrl, {
         method: "POST",
@@ -836,7 +848,7 @@ function postSession(){
         },
         body: JSON.stringify({
             sessionlength: parseInt(sessionLength),
-            dateofsession: new Date(getYear(date)+"-"+getMonth(date)+"-"+getDay(date)+"T"+document.getElementById('timepicker-trainer').value+":00"+":00Z"),
+            dateofsession: stringDate,
             priceofsession: parseFloat(priceOfSession),
             sessiondescription: sessionDesc,
             trainerid: parseInt(trainerID),
@@ -851,8 +863,8 @@ function trainerSessions(date) {
     console.log("trainer sessions by date")
     document.getElementById('ts_date').placeholder=dateToYMD(date);
     var count = 0;
-    let html = "";
-    const allSessionsURI = 'https://localhost:5001/api/sessions';
+    let html = ""; 
+    const allSessionsURI = 'https://localhost:5001/api/sessions/';
     // const allTrainersURI = 'https://localhost:5001/api/trainers';
     fetch(allSessionsURI).then(function(response){
         return response.json();
@@ -1020,4 +1032,245 @@ function timeRight(){
     }
 }
 
+function timeEnter() {
+    if (document.getElementById('time-selector').placeholder == '8:00') {
+        (document.getElementById('time-selector').value = '8:00');
+        return;
+    }   
+    if (document.getElementById('time-selector').placeholder == '9:00') {
+        (document.getElementById('time-selector').value = '9:00');
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '10:00') {
+        (document.getElementById('time-selector').value = '10:00');
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '11:00') {
+        (document.getElementById('time-selector').value = '11:00');
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '12:00') {
+        (document.getElementById('time-selector').value = '12:00');
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '1:00') {
+        (document.getElementById('time-selector').value = '1:00');
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '2:00') {
+        (document.getElementById('time-selector').value = '2:00');
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '3:00') {
+        (document.getElementById('time-selector').value = '3:00');
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '4:00') {
+        (document.getElementById('time-selector').value = '4:00');
+        return;
+    }
+    if (document.getElementById('time-selector').placeholder == '5:00') {
+        (document.getElementById('time-selector').value = '5:00');
+        return;
+    }
+}
+
 var timeWarning = "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\"><strong>Error:</strong> We are only open between 8:00 AM-5:00 PM.<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>"
+
+function cancelSession(SessionID){
+    const sessionID = SessionID
+    const cancelSessionUrl="https://localhost:5001/api/cancelsessions/"+sessionID;
+
+    fetch(cancelSessionUrl, {
+        method: "PUT",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            id: parseInt(sessionID),
+        })
+    })
+    .then((response)=>{
+        console.log(response);
+        getSessions();
+    })
+}
+
+function bookSession(SessionID){
+    var sessionID = SessionID
+    var customerID = localStorage.getItem('userLogin');
+    const bookSessionUrl="https://localhost:5001/api/booksessions/"+sessionID+"/"+customerID;
+
+    fetch(bookSessionUrl, {
+        method: "PUT",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+    })
+    .then((response)=>{
+        console.log(response);
+        getSessions();
+        // postTransactionCustomer(sessionID, customerID);
+        // postTransactionTrainer(sessionID);
+    })
+}
+
+function postTransactionCustomer(sessionID, customerID){
+    const postTransApiUrl="https://localhost:5001/api/transactions";
+    var priceOfSess =0;
+    const trainerId =1;
+    var custBalance =0;
+    
+    var custId =0;
+
+    const readCustApiUrl="https://localhost:5001/api/customers/"+customerID;
+    fetch(readCustApiUrl).then(function(response){
+        return response.json();
+    }).then(function(customer){
+        custBalance = parseFloat(customer.customerBalance),
+        custId = parseInt(customer.ID)
+    });
+
+    const readSessionApiUrl="https://localhost:5001/api/sessions/"+sessionID;
+    fetch(readSessionApiUrl).then(function(response){
+        return response.json();
+    }).then(function(session){
+        priceOfSess = parseFloat(session.priceOfSession * -1),
+        sessionId = parseInt(session.sessionID)
+    });
+
+    fetch(postTransApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            currentbalance: custBalance,
+            price: priceOfSess,
+            sessionid: parseInt(sessionID),
+            //cardid: null,//paraseInt(cardID),
+            customerid: parseInt(customerID),
+            trainerid: parseInt(trainerId)
+            //discountid: null //parseInt(discountID)
+        })
+    })
+    .then((response)=>{
+        console.log(response);
+    });
+}
+
+function postTransactionTrainer(sessionID){
+    var postTransApiUrl="https://localhost:5001/api/transactions";
+    var priceOfSess = 0;
+    var trainerId = 0;
+    var trainerBalance = 0;
+    var custID = 4;
+
+    const readSessionApiUrl="https://localhost:5001/api/sessions/"+sessionID;
+    fetch(readSessionApiUrl).then(function(response){
+        return response.json();
+    }).then(function(session){
+        priceOfSess = parseFloat(session.priceOfSession),
+        trainerId = session.trainerID
+        const readTrainerApiUrl="https://localhost:5001/api/trainers/"+trainerId;
+            fetch(readTrainerApiUrl).then(function(response){
+                return response.json();
+            }).then(function(trainer){
+                trainerBalance = parseFloat(trainer.trainerBalance)
+            });
+    });
+
+    
+
+    fetch(postTransApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            currentbalance: trainerBalance,
+            price: priceOfSess,
+            sessionid: parseInt(sessionID),
+            //cardid: null,//paraseInt(cardID),
+            customerid: custID,
+            trainerid: parseInt(trainerId)
+            //discountid: null //parseInt(discountID)
+        })
+    })
+    .then((response)=>{
+        console.log(response);
+    });
+}
+
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+document.getElementById("download-button").addEventListener("click", function(){
+    
+    var text = "";
+    if (localStorage.getItem('userType')==3){
+        var sessionsURL="https://localhost:5001/api/transactions";
+        var trainersURL="https://localhost:5001/api/transactions";
+        var customersURL="https://localhost:5001/api/transactions";
+        fetch(sessionsURL).then(function(response){
+            return response.json();
+        }).then(function(json){
+            json.forEach((session)=>{
+                text+="ID:"+session.sessionID+", IS CANCELLED:"+session.isCanceled+", DATE CREATED:"+session.dateCreated+", DATE OF SESSION"+session.dateOfSession+", PRICE OF SESSION"+session.priceOfSession+", TRAINER ID:"+session.trainerID+"\n";
+            })
+        })
+        fetch(trainersURL).then(function(response){
+            return response.json();
+        }).then(function(json){
+            json.forEach((trainer)=>{
+                text+="TrainerFName:"+trainer.trainerFName+", TrainerLName "+trainer.trainerLName+", Trainer Balance:"+trainer.trainerBalance+", IS CERTIFIED:"+trainer.isCertified+"\n";
+            })
+        })
+        fetch(customersURL).then(function(response){
+            return response.json();
+        }).then(function(json){
+            json.forEach((customer)=>{
+                text+="CustomerFName:"+customer.customerFName+", CustomerLName "+customer.trainerLName+", Customer Balance:"+customer.customerBalance+"\n";
+            })
+        })
+    } else if (localStorage.getItem('userType')==2){
+        fetch(sessionsURL).then(function(response){
+            return response.json();
+        }).then(function(json){
+            json.forEach((session)=>{
+                if(session.trainerID == localStorage.getItem('userType')) {
+                    text+="ID:"+session.sessionID+", IS CANCELLED:"+session.isCanceled+", DATE CREATED:"+session.dateCreated+", DATE OF SESSION"+session.dateOfSession+", PRICE OF SESSION"+session.priceOfSession+", TRAINER ID:"+session.trainerID+"\n";
+                }
+            })
+        })
+    } else if ((localStorage.getItem('userType')==1)) {
+        fetch(sessionsURL).then(function(response){
+            return response.json();
+        }).then(function(json){
+            json.forEach((session)=>{
+                if(session.customerID == localStorage.getItem('userType')) {
+                    text+="ID:"+session.sessionID+", IS CANCELLED:"+session.isCanceled+", DATE CREATED:"+session.dateCreated+", DATE OF SESSION"+session.dateOfSession+", PRICE OF SESSION"+session.priceOfSession+", TRAINER ID:"+session.trainerID+"\n";
+                }
+            })
+        })
+    }
+
+
+    var filename = "admin_reports.txt";
+    
+    download(filename, text);
+}, false);

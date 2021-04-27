@@ -72,8 +72,8 @@ function cancelSession(){
 }
 
 function bookSession(){
-    const sessionID = document.getElementById("sessionid2").value;
-    const customerID = document.getElementById("custid2").value;
+    var sessionID = document.getElementById("sessionid2").value;
+    var customerID = document.getElementById("custid2").value;
     const bookSessionUrl="https://localhost:5001/api/booksessions/"+sessionID+"/"+customerID;
 
     fetch(bookSessionUrl, {
@@ -94,12 +94,12 @@ function bookSession(){
 function postTransactionCustomer(sessionID, customerID){
     const postTransApiUrl="https://localhost:5001/api/transactions";
     var priceOfSess =0;
-    const trainerId =0;
+    const trainerId =1;
     var custBalance =0;
     
     var custId =0;
 
-    const readCustApiUrl="https://localhost:5001/api/customers/"+{customerID};
+    const readCustApiUrl="https://localhost:5001/api/customers/"+customerID;
     fetch(readCustApiUrl).then(function(response){
         return response.json();
     }).then(function(customer){
@@ -107,7 +107,7 @@ function postTransactionCustomer(sessionID, customerID){
         custId = parseInt(customer.ID)
     });
 
-    const readSessionApiUrl="https://localhost:5001/api/sesssions/"+{sessionID};
+    const readSessionApiUrl="https://localhost:5001/api/sessions/"+sessionID;
     fetch(readSessionApiUrl).then(function(response){
         return response.json();
     }).then(function(session){
@@ -138,26 +138,26 @@ function postTransactionCustomer(sessionID, customerID){
 
 function postTransactionTrainer(sessionID){
     var postTransApiUrl="https://localhost:5001/api/transactions";
-    var priceOfSess =0;
-    var trainerId =0;
-    var trainerBalance =0;
-    
-    const custId =0;
+    var priceOfSess = 0;
+    var trainerId = 0;
+    var trainerBalance = 0;
+    var custID = 4;
 
-    const readSessionApiUrl="https://localhost:5001/api/sesssions/"+{sessionID};
+    const readSessionApiUrl="https://localhost:5001/api/sessions/"+sessionID;
     fetch(readSessionApiUrl).then(function(response){
         return response.json();
     }).then(function(session){
-        priceOfSess = parseFloat(session.priceofsession),
-        trainerId = session.trainerid
+        priceOfSess = parseFloat(session.priceOfSession),
+        trainerId = session.trainerID
+        const readTrainerApiUrl="https://localhost:5001/api/trainers/"+trainerId;
+            fetch(readTrainerApiUrl).then(function(response){
+                return response.json();
+            }).then(function(trainer){
+                trainerBalance = parseFloat(trainer.trainerBalance)
+            });
     });
 
-    const readTrainerApiUrl="https://localhost:5001/api/trainers/"+{trainerId};
-    fetch(readTrainerApiUrl).then(function(response){
-        return response.json();
-    }).then(function(trainer){
-        trainerBalance = parseFloat(trainer.trainerbalance)
-    });
+    
 
     fetch(postTransApiUrl, {
         method: "POST",
@@ -170,7 +170,7 @@ function postTransactionTrainer(sessionID){
             price: priceOfSess,
             sessionid: parseInt(sessionID),
             //cardid: null,//paraseInt(cardID),
-            customerid: parseInt("0"),
+            customerid: custID,
             trainerid: parseInt(trainerId)
             //discountid: null //parseInt(discountID)
         })
