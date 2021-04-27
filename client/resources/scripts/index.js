@@ -466,6 +466,77 @@ function postCustomer(){
     })
     .then((response)=>{
         console.log(response);
+        tryCustomerLogin(customerEmail, customerPassword);
+    })
+}
+
+function postTrainer(){
+    const postTrainerApiUrl="https://localhost:5001/api/trainers";
+    const trainerFName = document.getElementById("fname").value;
+    const trainerLName = document.getElementById("lname").value;
+    const trainerPhoneNo = document.getElementById("phonenumber").value;
+    const trainerEmail = document.getElementById("email").value;
+    const trainerPassword = document.getElementById("password").value;
+
+    // Check box for iscertified
+    var trainerIsCertified = false;
+    var isCertifiedCheckBox = document.getElementById("traineriscertified");
+    if (isCertifiedCheckBox.checked == true)
+    {
+        trainerIsCertified = true;
+    }
+
+    fetch(postTrainerApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            trainerfname: trainerFName,
+            trainerlname: trainerLName,
+            trainerphoneno: trainerPhoneNo,
+            traineremail: trainerEmail,
+            trainerpassword: trainerPassword,
+            isCertified: trainerIsCertified
+        })
+
+    })
+    .then((response)=>{
+        console.log(response);
+        tryTrainerLogin(trainerEmail, trainerPassword);
+    })
+}
+function tryCustomerLogin(inputEmail, inputPassword){
+    const allCustomersURI = "https://localhost:5001/api/customers";
+    fetch(allCustomersURI).then(function(response){
+        return response.json();
+    }).then(function(json){
+        json.some((customer)=>{
+            console.log(inputEmail+" "+inputPassword);
+            console.log(customer.customerEmail+" "+customer.customerPassword);
+            if (inputEmail == customer.customerEmail && inputPassword == customer.customerPassword){
+                console.log("logging in as customer");
+                cLoginFunction(customer);
+                return true;
+            }
+        })
+    })
+}
+function tryTrainerLogin(inputEmail, inputPassword){
+    const allTrainersURI = 'https://localhost:5001/api/trainers';
+    fetch(allTrainersURI).then(function(response){
+        return response.json();
+    }).then(function(json){
+        json.some((trainer)=>{
+            console.log(inputEmail+" "+inputPassword);
+            console.log(trainer.trainerEmail+" "+trainer.trainerPassword);
+            if (inputEmail == trainer.trainerEmail && inputPassword == trainer.trainerPassword){
+                console.log("logging in as trainer");
+                tLoginFunction(trainer);
+                return true;
+            }
+        })
     })
 }
 
@@ -577,6 +648,7 @@ function populateAccountPage(){
                 document.getElementById('a_balance').placeholder="$"+trainer.trainerBalance;
                 document.getElementById('a_phoneno').placeholder=phoneNoFormat(trainer.trainerPhoneNo);
                 document.getElementById('a_email').placeholder=trainer.trainerEmail;
+                document.getElementById('a_iscertified').placeholder=booleanFormat(trainer.isCertified);
                 
                 // document.getElementById('login-link').style.display="none";
                 // document.getElementById('signup-link').innerHTML="Welcome, "+getFullName(trainer.trainerFName, trainer.trainerLName);
@@ -613,6 +685,15 @@ function phoneNoFormat(phoneNo) {
     return null;
 }
 
+function booleanFormat(booleanValue){
+    var value = "False";
+    if (booleanValue == 1)
+    {
+        value = "True";
+    }
+    return value;
+}
+
 function passwordToggle(){
     if (document.getElementById('password-input-login').type=="text"){
         document.getElementById('password-input-login').type="password"
@@ -620,3 +701,5 @@ function passwordToggle(){
         document.getElementById('password-input-login').type="text";
     }
 }
+
+// createSession base function

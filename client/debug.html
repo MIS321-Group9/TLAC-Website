@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEBUG TESTING</title>
 </head>
-<body onload = "getCustomers()">
+<body onload = "getSessions()">
     <h1>DEBUG TESTING</h1>
     <h3>All Customers</h3>
     <script type="text/javascript" src="resources/scripts/debug.js"></script>
@@ -28,11 +28,21 @@
             <input type="text" name="text5" id="password"/>
             <input type="submit" value="Submit" onclick="postCustomer()">
         </form>
-        <form onsubmit="return false;" method="put">
-            <h3>Cancel Session</h3>
-            <label for="id1">Session ID</label>
-            <input type="text" name="id1" id="id1"/>
-            <input type="submit" value="Submit" onclick="cancelSession()">
+        <form onsubmit="return false;" method="post">
+            <h3>Create Session</h3>
+            <label for="text">Session Length</label>
+            <input type="text" name="SessionLength" id="length"/>
+            <label for="text">session Date</label>
+            <input type="text" name="SessionDate" id="date"/>
+            <label for="text">Price of Session</label>
+            <input type="text" name="PriceOfSession" id="price"/>
+            <label for="text">Session Description</label>
+            <input type="text" name="SessionDescription" id="description"/>
+            <label for="text">Trainer ID</label>
+            <input type="text" name="TrainerID" id="trainerid"/>
+            <label for="text">Admin ID</label>
+            <input type="text" name="AdminID" id="adminid"/>
+            <input type="submit" value="Submit" onclick="postSession()">
         </form>
         
     </div>
