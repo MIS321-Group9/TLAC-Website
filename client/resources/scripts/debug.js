@@ -53,10 +53,10 @@ function getCustomers(){
 
 function cancelSession(){
     const sessionID = document.getElementById("sessionid").value;
-    const cancelSessionUrl="https://localhost:5001/api/sessions/"+sessionID+"/cancel";
+    const cancelSessionUrl="https://localhost:5001/api/cancelsessions/"+sessionID;
 
     fetch(cancelSessionUrl, {
-        method: "cancelSession",
+        method: "PUT",
         headers: {
             "Accept": 'application/json',
             "Content-Type": 'application/json'
@@ -64,6 +64,24 @@ function cancelSession(){
         body: JSON.stringify({
             id: parseInt(sessionID),
         })
+    })
+    .then((response)=>{
+        console.log(response);
+        getSessions();
+    })
+}
+
+function bookSession(){
+    const sessionID = document.getElementById("sessionid2").value;
+    const customerID = document.getElementById("custid2").value;
+    const bookSessionUrl="https://localhost:5001/api/booksessions/"+sessionID+"/"+customerID;
+
+    fetch(bookSessionUrl, {
+        method: "PUT",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
     })
     .then((response)=>{
         console.log(response);
