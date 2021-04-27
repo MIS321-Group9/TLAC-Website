@@ -50,6 +50,15 @@
             <input type="text" name="Session ID" id="sessionid"/>
             <input type="submit" value="Submit" onclick="cancelSession()">
         </form>
+
+        <form onsubmit="return false;" method="put">
+            <h3>Book Session</h3>
+            <label for="text">Session ID</label>
+            <input type="text" name="Session ID" id="sessionid2"/>
+            <label for="text">Customer ID</label>
+            <input type="text" name="Customer ID" id="custid2"/>
+            <input type="submit" value="Submit" onclick="bookSession()">
+        </form>
         
     </div>
 </body>
