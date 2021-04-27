@@ -425,6 +425,7 @@ function indexStart(){
 function scheduleStart(){
     checkButton();
     displayToday();
+    checkScheduleType();
 }
 function accountStart(){
     loginCheck();
@@ -709,3 +710,38 @@ function passwordToggle(){
 }
 
 // createSession base function
+
+
+// scheduling functions - logic
+function bookSession(){
+    alert("book session");
+}
+
+function checkScheduleType(){
+    console.log("checking schedule type");
+    if (localStorage.getItem('userType')==0) {
+        console.log('no user');
+        document.getElementById('customer-schedule').hidden = false;
+        document.getElementById('trainer-schedule').hidden = true;
+        document.getElementById('admin-schedule').hidden = true;
+        document.getElementById('booksession-button').disabled = true;
+    } else if (localStorage.getItem('userType')==1) {
+        console.log('client user');
+        document.getElementById('customer-schedule').hidden = false;
+        document.getElementById('trainer-schedule').hidden = true;
+        document.getElementById('admin-schedule').hidden = true;
+        document.getElementById('booksession-button').disabled = false;
+    } else if (localStorage.getItem('userType')==2) {
+        console.log('trainer user');
+        document.getElementById('customer-schedule').hidden = true;
+        document.getElementById('trainer-schedule').hidden = false;
+        document.getElementById('admin-schedule').hidden = true;
+        document.getElementById('booksession-button').disabled = false;
+    } else if (localStorage.getItem('userType')==3) {
+        console.log('admin user');
+        document.getElementById('customer-schedule').hidden = true;
+        document.getElementById('trainer-schedule').hidden = true;
+        document.getElementById('admin-schedule').hidden = false;
+        document.getElementById('booksession-button').disabled = false;
+    }
+}

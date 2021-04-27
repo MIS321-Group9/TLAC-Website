@@ -64,7 +64,7 @@
         </div>
       </div> -->
 
-      <div class="container centered">
+      <div id="customer-schedule" class="container centered">
         <div class="row">
             <div class="col col-md-6 mx-auto">
                 <div class="card card-signin my-5 sessioncard">
@@ -91,12 +91,79 @@
                   <p>Description</p>
                 </div>
                 <div class="card-footer text-center">
-                  <a href="#" class="btn btn-outline-primary">Book Session</a>
+                  <button type="text" id="booksession-button" class="btn btn-outline-primary" onclick="bookSession()">Book Session</button>
                 </div>
               </div>
             </div>
         </div>
-    </div>
+
+      <div id="trainer-schedule" class="container centered">
+        <div class="row">
+            <div class="col col-md-6 mx-auto">
+                <div class="card card-signin my-5 sessioncard">
+                    <div class="card-body">
+                      <h5 class="card-title text-center">Trainer Scheduling</h5>
+                        <input class="form-control" type="text" id="datepicker" placeholder="Select a Date">
+                      <hr class="my-4">
+                      <div class="container scroll" id="sessionTable">
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-6 mx-auto">
+              <div class="card card-signin my-5">
+                <div class="card-body">
+                  <h5 class="card-title text-center">Session Information</h5>
+                  <input id="s_date" class="form-control" readonly disabled>
+                  <p>Date</p>
+                  <input id="s_price" class="form-control" readonly disabled>
+                  <p>Price</p>
+                  <input id="s_trainer" class="form-control" readonly disabled>
+                  <p>Trainer</p>
+                  <input id="s_description" class="form-control" readonly disabled>
+                  <p>Description</p>
+                </div>
+                <div class="card-footer text-center">
+                  <button type="text" class="btn btn-outline-primary" id="booksession-button" onclick="bookSession()">Book Session</button>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div id="admin-schedule" class="container centered">
+        <div class="row">
+            <div class="col col-md-6 mx-auto">
+                <div class="card card-signin my-5 sessioncard">
+                    <div class="card-body">
+                      <h5 class="card-title text-center">Admin Scheduling</h5>
+                        <input class="form-control" type="text" id="datepicker" placeholder="Select a Date">
+                      <hr class="my-4">
+                      <div class="container scroll" id="sessionTable">
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-6 mx-auto">
+              <div class="card card-signin my-5">
+                <div class="card-body">
+                  <h5 class="card-title text-center">Session Information</h5>
+                  <input id="s_date" class="form-control" readonly disabled>
+                  <p>Date</p>
+                  <input id="s_price" class="form-control" readonly disabled>
+                  <p>Price</p>
+                  <input id="s_trainer" class="form-control" readonly disabled>
+                  <p>Trainer</p>
+                  <input id="s_description" class="form-control" readonly disabled>
+                  <p>Description</p>
+                </div>
+                <div class="card-footer text-center">
+                  <button type="text" class="btn btn-outline-primary" id="booksession-button" onclick="bookSession()">Book Session</a>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
 
     <!-- Scripts -->
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
