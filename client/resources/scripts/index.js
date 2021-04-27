@@ -385,7 +385,7 @@ function checkButton() {
         }).then(function(customer){
             document.getElementById('signup-link').innerHTML="Logout";
             document.getElementById('signup-link').onclick=logoutButton;
-            //document.getElementById('login-link').style.display="none";
+        
             document.getElementById('login-link').innerHTML="Welcome, "+getFullName(customer.customerFName, customer.customerLName);
             document.getElementById('login-link').href="account.html";
         })
@@ -396,7 +396,7 @@ function checkButton() {
         }).then(function(trainer){
             document.getElementById('signup-link').innerHTML="Logout";
             document.getElementById('signup-link').onclick=logoutButton;
-            //document.getElementById('login-link').style.display="none";
+            
             document.getElementById('login-link').innerHTML="Welcome, "+getFullName(trainer.trainerFName, trainer.trainerLName);
             document.getElementById('login-link').href="account.html";
         })
@@ -407,11 +407,12 @@ function checkButton() {
         }).then(function(admin){
             document.getElementById('signup-link').innerHTML="Logout";
             document.getElementById('signup-link').onclick=logoutButton;
-            //document.getElementById('login-link').style.display="none";
+            
             document.getElementById('login-link').innerHTML="Admin Dashboard";
             document.getElementById('login-link').href="account.html";
         })
     }
+
 }
 
 function logoutButton(){

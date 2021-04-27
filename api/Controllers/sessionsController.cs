@@ -70,8 +70,10 @@ namespace api.Controllers
 
         // CANCEL SESSION: api/session/5
         [EnableCors("Cancel")]
-        [HttpPut("{id}", Name = "CancelSession")]
-        public void Cancel(int id)
+        [Route("sessions/{id}/cancel")]
+        //[HttpPut("{id}")]
+        //[NonAction]
+        protected void Cancel(int id)
         {
             ICancelSession modifyObject = new CancelSession();
             modifyObject.CancelSession(id);

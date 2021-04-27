@@ -30,16 +30,16 @@ namespace API.Models.Sessions
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = @"INSERT INTO tsessions(sessionlength, datecreated, dateofsession, priceofsession, sessiondescription, iscanceled, customerid, trainerid, adminid) VALUES(@sessionlength, @datecreated, @dateofsession, @priceofsession, @sessiondescription, @iscanceled, @customerid, @trainerid, @adminid)";
+            string stm = @"INSERT INTO tsessions(sessionlength, datecreated, dateofsession, priceofsession, sessiondescription, iscanceled, trainerid, adminid) VALUES(@sessionlength, @datecreated, @dateofsession, @priceofsession, @sessiondescription, @iscanceled, @trainerid, @adminid)";
 
             using var cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@sessionlength", session.SessionLength);
             cmd.Parameters.AddWithValue("@datecreated", DateTime.Now);
+            //cmd.Parameters.AddWithValue("@dateofsession", DateTime.Now);
             cmd.Parameters.AddWithValue("@dateofsession", session.DateOfSession);
             cmd.Parameters.AddWithValue("@priceofsession", session.PriceOfSession);
-            cmd.Parameters.AddWithValue("@sessopndescription", session.SessionDescription);
+            cmd.Parameters.AddWithValue("@sessiondescription", session.SessionDescription);
             cmd.Parameters.AddWithValue("@iscanceled", false);
-            cmd.Parameters.AddWithValue("@customerid", null);
             cmd.Parameters.AddWithValue("@trainerid", session.TrainerID);
             cmd.Parameters.AddWithValue("@adminid", session.AdminID);
 
