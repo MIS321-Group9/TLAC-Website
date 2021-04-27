@@ -98,3 +98,35 @@ function postCustomer(){
         console.log(response);
     })
 }
+
+// CREATES A SESSION
+function postSession(){
+    const postSessApiUrl="https://localhost:5001/api/sessions";
+
+    const sessionLength = document.getElementById("length").value;
+    const dateOfSession = document.getElementById("date").value;
+    const priceOfSession = document.getElementById("price").value;
+    const sessionDesc = document.getElementById("description").value;
+    const trainerID = document.getElementById("trainerid").value;
+    const adminID = document.getElementById("adminid").value;
+
+
+    fetch(postSessApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            sessionlength: sessionLength,
+            dateofsession: dateOfSession,
+            priceofsession: priceOfSession,
+            sessiondescription: sessionDesc,
+            trainerid: trainerID,
+            adminid: adminID
+        })
+    })
+    .then((response)=>{
+        console.log(response);
+    })
+}

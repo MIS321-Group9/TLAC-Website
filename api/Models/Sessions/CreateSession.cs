@@ -38,8 +38,8 @@ namespace API.Models.Sessions
             cmd.Parameters.AddWithValue("@dateofsession", session.DateOfSession);
             cmd.Parameters.AddWithValue("@priceofsession", session.PriceOfSession);
             cmd.Parameters.AddWithValue("@sessopndescription", session.SessionDescription);
-            cmd.Parameters.AddWithValue("@iscanceled", session.IsCanceled);
-            cmd.Parameters.AddWithValue("@customerid", session.CustomerID);
+            cmd.Parameters.AddWithValue("@iscanceled", false);
+            cmd.Parameters.AddWithValue("@customerid", null);
             cmd.Parameters.AddWithValue("@trainerid", session.TrainerID);
             cmd.Parameters.AddWithValue("@adminid", session.AdminID);
 
