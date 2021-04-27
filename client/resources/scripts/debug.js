@@ -86,8 +86,100 @@ function bookSession(){
     .then((response)=>{
         console.log(response);
         getSessions();
+        postTransactionCustomer(sessionID, customerID);
+        postTransactionTrainer(sessionID);
     })
 }
+
+function postTransactionCustomer(sessionID, customerID){
+    const postTransApiUrl="https://localhost:5001/api/transactions";
+    var priceOfSess =0;
+    const trainerId =0;
+    var custBalance =0;
+    
+    var custId =0;
+
+    const readCustApiUrl="https://localhost:5001/api/customers/"+{customerID};
+    fetch(readCustApiUrl).then(function(response){
+        return response.json();
+    }).then(function(customer){
+        custBalance = parseFloat(customer.customerBalance),
+        custId = parseInt(customer.ID)
+    });
+
+    const readSessionApiUrl="https://localhost:5001/api/sesssions/"+{sessionID};
+    fetch(readSessionApiUrl).then(function(response){
+        return response.json();
+    }).then(function(session){
+        priceOfSess = parseFloat(session.priceOfSession * -1),
+        sessionId = parseInt(session.sessionID)
+    });
+
+    fetch(postTransApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            currentbalance: custBalance,
+            price: priceOfSess,
+            sessionid: parseInt(sessionID),
+            //cardid: null,//paraseInt(cardID),
+            customerid: parseInt(customerID),
+            trainerid: parseInt(trainerId)
+            //discountid: null //parseInt(discountID)
+        })
+    })
+    .then((response)=>{
+        console.log(response);
+    });
+}
+
+function postTransactionTrainer(sessionID){
+    var postTransApiUrl="https://localhost:5001/api/transactions";
+    var priceOfSess =0;
+    var trainerId =0;
+    var trainerBalance =0;
+    
+    const custId =0;
+
+    const readSessionApiUrl="https://localhost:5001/api/sesssions/"+{sessionID};
+    fetch(readSessionApiUrl).then(function(response){
+        return response.json();
+    }).then(function(session){
+        priceOfSess = parseFloat(session.priceofsession),
+        trainerId = session.trainerid
+    });
+
+    const readTrainerApiUrl="https://localhost:5001/api/trainers/"+{trainerId};
+    fetch(readTrainerApiUrl).then(function(response){
+        return response.json();
+    }).then(function(trainer){
+        trainerBalance = parseFloat(trainer.trainerbalance)
+    });
+
+    fetch(postTransApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            currentbalance: trainerBalance,
+            price: priceOfSess,
+            sessionid: parseInt(sessionID),
+            //cardid: null,//paraseInt(cardID),
+            customerid: parseInt("0"),
+            trainerid: parseInt(trainerId)
+            //discountid: null //parseInt(discountID)
+        })
+    })
+    .then((response)=>{
+        console.log(response);
+    });
+}
+
 
 // CREATES A CUSTOMER ACCOUNT
 function postCustomer(){
