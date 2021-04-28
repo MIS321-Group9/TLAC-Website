@@ -1,0 +1,494 @@
+SQL Statements to refer to for main path:
+
+/* Create ALL accounts (4 Customers, 3 Trainers, 2 Admins) */
+		/* Customers */
+INSERT INTO tcustomers
+(customerfname, customerlname, customerphonenumber, customeremail, customerpassword, customerbalance) 
+VALUES
+('Zachary', 'Russell', '2564254436', 'zcrussell@crimson.ua.edu', 'PASSWORD', 0);
+
+INSERT INTO tcustomers
+(customerfname, customerlname, customerphonenumber, customeremail, customerpassword, customerbalance) 
+VALUES
+('Jared', 'Haynie', '6431235678', 'jhaynie@crimson.ua.edu', '12345', 0);
+
+INSERT INTO tcustomers
+(customerfname, customerlname, customerphonenumber, customeremail, customerpassword, customerbalance) 
+VALUES
+('Brandon', 'Peak', '1567890192', 'bpeak@crimson.ua.edu', 'ijasdf89$asdf', 0);
+
+INSERT INTO tcustomers
+(customerfname, customerlname, customerphonenumber, customeremail, customerpassword, customerbalance) 
+VALUES
+('Daniel', 'Burleson', '5980875678', 'dburleson@crimson.ua.edu', 'aAaA0987654321', 0);
+
+		/* Trainers */
+INSERT INTO ttrainers
+(trainerfname, trainerlname, trainerphonenumber, traineremail, trainerpassword, trainerbalance, iscertified) 
+VALUES
+('Jim', 'Bob', '9999999999', 'jimbob@gmail.com', 'mrjimbobpassword', 0, True);
+
+INSERT INTO ttrainers
+(trainerfname, trainerlname, trainerphonenumber, traineremail, trainerpassword, trainerbalance, iscertified) 
+VALUES
+('Steve', 'O', '7896574567', 'steveob@gmail.com', '09873gLioas', 0, True);
+
+INSERT INTO ttrainers
+(trainerfname, trainerlname, trainerphonenumber, traineremail, trainerpassword, trainerbalance, iscertified) 
+VALUES
+('Dwayne', 'Johnson', '9875431674', 'djohnson@gmail.com', 'smellwhattherockisco', 0, True);
+
+		/* Admins */
+INSERT INTO tadmins
+(adminemail, adminpassword)
+VALUES
+('Admin1@email.com', '1');
+
+INSERT INTO tadmins
+(adminemail, adminpassword)
+VALUES
+('Admin2@email.com', '2');
+
+INSERT INTO tadmins
+(adminemail, adminpassword)
+VALUES
+('admin3@email.com', '3');
+
+/* End of Create ALL accounts */
+
+
+
+/* Create Discounts */
+
+INSERT INTO tdiscounts
+(discountcode, isapplied, percentdiscounted, adminid, customerid)
+VALUES
+('20%OFF', False, 0.2, 1, NULL);
+
+INSERT INTO tdiscounts
+(discountcode, isapplied, percentdiscounted, adminid, customerid)
+VALUES
+('10%OFF', False, 0.1, 2, NULL);
+
+INSERT INTO tdiscounts
+(discountcode, isapplied, percentdiscounted, adminid, customerid)
+VALUES
+('5%OFF', False, 0.05, 2, NULL);
+
+/* End of Create Discounts */
+
+
+
+/* Create Events */
+
+INSERT INTO tevents
+(eventdescription, dateofevent, eventlength, iscanceled, adminid)
+VALUES
+('THE GYM IS CLOSED', '2021-04-17 14:00:00', 2, False, 1);
+
+INSERT INTO tevents
+(eventdescription, dateofevent, eventlength, iscanceled, adminid)
+VALUES
+('FOOD DAY', '2021-04-18 14:00:00', 2, False, 2);
+
+/* End of Create Events */
+
+
+
+/* Create Credit Cards */
+		
+        /* 4 Credit Cards */
+INSERT INTO tcreditcards
+(cardno, nameoncard, securitycode, expdate, customerid, trainerid)
+VALUES
+('12365478909', 'Steve J O', '998', '2024-09-01', NULL, 2);
+
+INSERT INTO tcreditcards
+(cardno, nameoncard, securitycode, expdate, customerid, trainerid)
+VALUES
+('34509876324', 'Dwayne R Johnson', '123', '2025-03-01', NULL, 3);
+
+INSERT INTO tcreditcards
+(cardno, nameoncard, securitycode, expdate, customerid, trainerid)
+VALUES
+('68709345567', 'Zachary C Russell', '348', '2022-05-01', 1, NULL);
+
+INSERT INTO tcreditcards
+(cardno, nameoncard, securitycode, expdate, customerid, trainerid)
+VALUES
+('78954234645', 'Daniel D Burleson', '575', '2022-07-01', 4, NULL);
+
+/* End of Create Credit Cards*/
+
+
+
+/* Create Sessions */
+
+		/* 5 Sessions Created */
+INSERT INTO tsessions
+(sessionlength, datecreated, dateofsession, priceofsession, sessiondescription, iscanceled, customerid, trainerid)
+VALUES
+(1, NOW(), '2021-04-19 14:00:00', 100.00, 'We will train legs', FALSE, NULL, 1);
+
+INSERT INTO tsessions
+(sessionlength, datecreated, dateofsession, priceofsession, sessiondescription, iscanceled, customerid, trainerid)
+VALUES
+(1, NOW() ,'2021-04-18 12:00:00', 150.00, 'We will train Arms', FALSE, NULL, 2);
+
+INSERT INTO tsessions
+(sessionlength, datecreated, dateofsession, priceofsession, sessiondescription, iscanceled, customerid, trainerid)
+VALUES
+(1, NOW() ,'2021-04-18 08:00:00', 80.00, 'We will train cardio', FALSE, NULL, 1);
+
+INSERT INTO tsessions
+(sessionlength, datecreated, dateofsession, priceofsession, sessiondescription, iscanceled, customerid, trainerid)
+VALUES
+(2, NOW() ,'2021-04-17 17:00:00', 250.00, 'We will train boxing', FALSE, NULL, 3);
+
+INSERT INTO tsessions
+(sessionlength, datecreated, dateofsession, priceofsession, sessiondescription, iscanceled, customerid, trainerid)
+VALUES
+(1, NOW() ,'2021-04-20 11:00:00', 50.00, 'We cover basics of jabbing', FALSE, NULL, 3);
+
+/* End of Create Sessions */
+
+
+
+/* Book Sessions */
+
+UPDATE tsessions 
+SET customerid=1
+WHERE sessionid=4;
+
+UPDATE tsessions 
+SET customerid=2
+WHERE sessionid=1;
+
+UPDATE tsessions 
+SET customerid=3
+WHERE sessionid=2;
+
+UPDATE tsessions 
+SET customerid=4
+WHERE sessionid=3;
+
+UPDATE tsessions 
+SET customerid=1
+WHERE sessionid=5;
+
+	/* Transactions from Book Sessions (few use discounts and credit cards) */
+			/* Update Customers balance and create transaction */
+    UPDATE tcustomers
+	SET customerbalance=customerbalance-((SELECT priceofsession FROM tsessions WHERE sessionid=4) - ((SELECT priceofsession FROM tsessions WHERE sessionid=4) * (SELECT percentdiscounted FROM tdiscounts WHERE discountid=1)))
+	WHERE customerid=1;
+    
+    INSERT INTO ttransactions
+    (isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid)
+    VALUES
+    (FALSE, NOW(), (SELECT customerbalance FROM tcustomers WHERE customerid=1), -((SELECT priceofsession FROM tsessions WHERE sessionid=4) - ((SELECT priceofsession FROM tsessions WHERE sessionid=4) * (SELECT percentdiscounted FROM tdiscounts WHERE discountid=1))), 4, 1, 3, 1, NULL);
+    
+    UPDATE tdiscounts
+    SET isapplied=TRUE, customerid=1
+    WHERE discountid=1;
+    
+    UPDATE tcustomers
+	SET customerbalance=customerbalance-((SELECT priceofsession FROM tsessions WHERE sessionid=1) - ((SELECT priceofsession FROM tsessions WHERE sessionid=1) * (SELECT percentdiscounted FROM tdiscounts WHERE discountid=2)))
+	WHERE customerid=2;
+    
+    INSERT INTO ttransactions
+    (isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid)
+    VALUES
+    (FALSE, NOW(), (SELECT customerbalance FROM tcustomers WHERE customerid=2), -((SELECT priceofsession FROM tsessions WHERE sessionid=1) - ((SELECT priceofsession FROM tsessions WHERE sessionid=1) * (SELECT percentdiscounted FROM tdiscounts WHERE discountid=2))), 1, 3, NULL, 2, NULL);
+    
+    UPDATE tdiscounts
+    SET isapplied=TRUE, customerid=2
+    WHERE discountid=2;
+    
+    UPDATE tcustomers
+	SET customerbalance=customerbalance-((SELECT priceofsession FROM tsessions WHERE sessionid=2) - ((SELECT priceofsession FROM tsessions WHERE sessionid=2) * (SELECT percentdiscounted FROM tdiscounts WHERE discountid=3)))
+	WHERE customerid=3;
+    
+    INSERT INTO ttransactions
+    (isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid)
+    VALUES
+    (FALSE, NOW(), (SELECT customerbalance FROM tcustomers WHERE customerid=3), -((SELECT priceofsession FROM tsessions WHERE sessionid=2) - ((SELECT priceofsession FROM tsessions WHERE sessionid=2) * (SELECT percentdiscounted FROM tdiscounts WHERE discountid=3))), 2, 2, NULL, 3, NULL);
+    
+    UPDATE tdiscounts
+    SET isapplied=TRUE, customerid=3
+    WHERE discountid=3;
+    
+    UPDATE tcustomers
+	SET customerbalance=customerbalance-(SELECT priceofsession FROM tsessions WHERE sessionid=3)
+	WHERE customerid=4;
+    
+    INSERT INTO ttransactions
+    (isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid)
+    VALUES
+    (FALSE, NOW(), (SELECT customerbalance FROM tcustomers WHERE customerid=4), -(SELECT priceofsession FROM tsessions WHERE sessionid=3), 3, NULL, 4, 4, NULL);
+    
+    UPDATE tcustomers
+	SET customerbalance=customerbalance-(SELECT priceofsession FROM tsessions WHERE sessionid=5)
+	WHERE customerid=1;
+    
+    INSERT INTO ttransactions
+    (isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid)
+    VALUES
+    (FALSE, NOW(), (SELECT customerbalance FROM tcustomers WHERE customerid=1), -(SELECT priceofsession FROM tsessions WHERE sessionid=5), 5, NULL, 3, 1, NULL);
+    
+			/* Update Trainers */
+	UPDATE ttrainers
+	SET trainerbalance=trainerbalance+(SELECT priceofsession FROM tsessions WHERE sessionid=4)-25
+	WHERE trainerid=3;
+    
+    INSERT INTO ttransactions
+    (isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid)
+    VALUES
+    (FALSE, NOW(), (SELECT trainerbalance FROM ttrainers WHERE trainerid=3), (SELECT priceofsession FROM tsessions WHERE sessionid=4)-25, 4, NULL, 2, NULL, 3);
+    
+    UPDATE ttrainers
+	SET trainerbalance=trainerbalance+(SELECT priceofsession FROM tsessions WHERE sessionid=1)-25
+	WHERE trainerid=1;
+    
+    INSERT INTO ttransactions
+    (isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid)
+    VALUES
+    (FALSE, NOW(), (SELECT trainerbalance FROM ttrainers WHERE trainerid=1), (SELECT priceofsession FROM tsessions WHERE sessionid=1)-25, 1, NULL, NULL, NULL, 1);
+    
+    UPDATE ttrainers
+	SET trainerbalance=trainerbalance+(SELECT priceofsession FROM tsessions WHERE sessionid=2)-25
+	WHERE trainerid=2;
+    
+    INSERT INTO ttransactions
+    (isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid)
+    VALUES
+    (FALSE, NOW(), (SELECT trainerbalance FROM ttrainers WHERE trainerid=2), (SELECT priceofsession FROM tsessions WHERE sessionid=2)-25, 2, NULL, 1, NULL, 2);
+    
+    UPDATE ttrainers
+	SET trainerbalance=trainerbalance+(SELECT priceofsession FROM tsessions WHERE sessionid=3)-25
+	WHERE trainerid=1;
+    
+    INSERT INTO ttransactions
+    (isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid)
+    VALUES
+    (FALSE, NOW(), (SELECT trainerbalance FROM ttrainers WHERE trainerid=1), (SELECT priceofsession FROM tsessions WHERE sessionid=3)-25, 3, NULL, NULL, NULL, 1);
+    
+    UPDATE ttrainers
+	SET trainerbalance=trainerbalance+(SELECT priceofsession FROM tsessions WHERE sessionid=5)-25
+	WHERE trainerid=3;
+    
+    INSERT INTO ttransactions
+    (isrefunded, transactiondate, currentbalance, price, sessionid, discountid, cardid, customerid, trainerid)
+    VALUES
+    (FALSE, NOW(), (SELECT trainerbalance FROM ttrainers WHERE trainerid=3), (SELECT priceofsession FROM tsessions WHERE sessionid=5)-25, 5, NULL, 2, NULL, 3);
+    
+    /* End of Transactions from Book Sessions */
+/* End of Book Sessions */
+
+
+
+/* Cancel Sessions */
+		/* 1 Session canceled */
+/* Transactions (REFUNDS) from Cancel Sessions */
+    
+UPDATE tcustomers
+SET customerbalance=customerbalance-
+(SELECT price 
+	FROM ttransactions
+	WHERE customerid=(SELECT customerid FROM tsessions WHERE sessionid=1) 
+	AND sessionid=1)
+WHERE customerid=(SELECT customerid FROM tsessions WHERE sessionid=1);
+
+UPDATE ttrainers
+SET trainerbalance=trainerbalance-(SELECT price FROM ttransactions WHERE sessionid=1 AND trainerid=(SELECT trainerid FROM tsessions WHERE sessionid=1))
+WHERE trainerid=(SELECT trainerid FROM tsessions WHERE sessionid=1);
+
+UPDATE ttransactions
+SET IsRefunded=True
+WHERE sessionid=1;
+
+    
+    /* set session IsCanceled=True */
+    
+    UPDATE tsessions
+    SET IsCanceled=True
+    WHERE sessionid =1;
+    
+    /* Update by creating new duplicate session (have to create temp duplicate table*/
+    
+    CREATE TABLE tempTSessions SELECT * FROM tsessions WHERE sessionid=1;
+    INSERT INTO tsessions
+	(sessionlength, datecreated, dateofsession, priceofsession, sessiondescription, iscanceled, customerid, trainerid)
+	VALUES
+		((SELECT sessionlength FROM tempTSessions WHERE sessionid=1), 
+		NOW(), 
+		(SELECT dateofsession FROM tempTSessions WHERE sessionid=1), 
+		(SELECT priceofsession FROM tempTSessions WHERE sessionid=1), 
+		(SELECT sessiondescription FROM tempTSessions WHERE sessionid=1), 
+		FALSE, 
+		NULL, 
+		(SELECT trainerid FROM tempTSessions WHERE sessionid=1));
+	DROP TABLE IF EXISTS tempTSessions;
+	
+    
+    /* End of Transactions from Cancel Sessions */
+/* End of Cancel Sessions */
+
+
+
+/* Delete Sessions - With trainer */
+	/* 1 Session deleted */
+/* Transactions (REFUNDS) from Delete Sessions */
+UPDATE tcustomers
+SET customerbalance=customerbalance-
+(SELECT price 
+	FROM ttransactions
+	WHERE customerid=(SELECT customerid FROM tsessions WHERE sessionid=3) 
+	AND sessionid=3)
+WHERE customerid=(SELECT customerid FROM tsessions WHERE sessionid=3);
+
+UPDATE ttrainers
+SET trainerbalance=trainerbalance-(SELECT price FROM ttransactions WHERE sessionid=3 AND trainerid=(SELECT trainerid FROM tsessions WHERE sessionid=3))
+WHERE trainerid=(SELECT trainerid FROM tsessions WHERE sessionid=3);
+
+UPDATE ttransactions
+SET IsRefunded=True
+WHERE sessionid=3;
+
+    /* set session IsCanceled=True */
+    
+    UPDATE tsessions
+    SET IsCanceled=True
+    WHERE sessionid =3;
+
+/* End of Delete Sessions */
+
+
+
+/* Delete Sessions with Admin */
+	/* 1 Session deleted */
+/* Transactions (REFUNDS) from Delete Sessions (Admin) */
+UPDATE tcustomers
+SET customerbalance=customerbalance-
+(SELECT price 
+	FROM ttransactions
+	WHERE customerid=(SELECT customerid FROM tsessions WHERE sessionid=4) 
+	AND sessionid=4)
+WHERE customerid=(SELECT customerid FROM tsessions WHERE sessionid=4);
+
+UPDATE ttrainers
+SET trainerbalance=trainerbalance-(SELECT price FROM ttransactions WHERE sessionid=4 AND trainerid=(SELECT trainerid FROM tsessions WHERE sessionid=4))
+WHERE trainerid=(SELECT trainerid FROM tsessions WHERE sessionid=4);
+
+UPDATE ttransactions
+SET IsRefunded=True
+WHERE sessionid=4;
+
+    /* set session IsCanceled=True */
+    
+    UPDATE tsessions
+    SET IsCanceled=True, adminid=1
+    WHERE sessionid =4;
+
+/* End of Delete Sessions with Admin */
+
+
+
+/* Remove Customer from Session with Admin */
+
+UPDATE tcustomers
+SET customerbalance=customerbalance-
+(SELECT price 
+	FROM ttransactions
+	WHERE customerid=(SELECT customerid FROM tsessions WHERE sessionid=5) 
+	AND sessionid=5)
+WHERE customerid=(SELECT customerid FROM tsessions WHERE sessionid=5);
+
+UPDATE ttrainers
+SET trainerbalance=trainerbalance-(SELECT price FROM ttransactions WHERE sessionid=5 AND trainerid=(SELECT trainerid FROM tsessions WHERE sessionid=5))
+WHERE trainerid=(SELECT trainerid FROM tsessions WHERE sessionid=5);
+
+UPDATE ttransactions
+SET IsRefunded=True
+WHERE sessionid=5;
+
+    
+    /* set session IsCanceled=True */
+    
+    UPDATE tsessions
+    SET IsCanceled=True, adminid=2
+    WHERE sessionid =5;
+    
+    /* Update by creating new duplicate session (have to create temp duplicate table*/
+    
+    CREATE TABLE tempTSessions SELECT * FROM tsessions WHERE sessionid=5;
+    INSERT INTO tsessions
+	(sessionlength, datecreated, dateofsession, priceofsession, sessiondescription, iscanceled, customerid, trainerid, adminid)
+	VALUES
+		((SELECT sessionlength FROM tempTSessions WHERE sessionid=5), 
+		NOW(), 
+		(SELECT dateofsession FROM tempTSessions WHERE sessionid=5), 
+		(SELECT priceofsession FROM tempTSessions WHERE sessionid=5), 
+		(SELECT sessiondescription FROM tempTSessions WHERE sessionid=5), 
+		FALSE, 
+		NULL, 
+		(SELECT trainerid FROM tempTSessions WHERE sessionid=5),
+        2);
+	DROP TABLE IF EXISTS tempTSessions;
+    
+/* End of Remove Customer from Session with Admin */
+
+
+
+/* Delete Event */
+UPDATE tevents
+SET IsCanceled=True, adminid=2
+WHERE eventid=1;
+
+/* End of Delete Event */
+
+
+
+/* Edit Event */
+UPDATE tevents
+SET IsCanceled=True, adminid=2
+WHERE eventid=2;
+
+	CREATE TABLE tempTEvents SELECT * FROM tevents WHERE eventid=2;
+    INSERT INTO tevents
+	(eventdescription, dateofevent, eventlength, iscanceled, adminid)
+	VALUES
+		((SELECT eventdescription FROM temptevents WHERE eventid=2), '2021-04-18 14:00:00', (SELECT eventlength FROM temptevents WHERE eventid=2), False, 2);
+
+/* End of Edit Event */
+
+
+
+/* View Total Profit for Gym */
+SELECT
+	COUNT(ts.sessionid) AS SessionCount,
+	-(SUM(tt.price)) AS TotalProfit
+	FROM tsessions ts JOIN ttransactions tt ON ts.sessionid = tt.sessionid
+	WHERE ts.iscanceled=false AND tt.isrefunded=false;
+
+/* View All Users */
+SELECT * FROM tcustomers;
+
+SELECT * FROM ttrainers;
+
+/* View All Sessions */
+SELECT * FROM tsessions;
+
+/* View All Canceled Sessions */
+SELECT * FROM tsessions WHERE iscanceled=True;
+
+/* View All Non-Canceled Session */
+SELECT * FROM tsessions WHERE iscanceled=False;
+
+/* View All Transactions */
+SELECT * FROM ttransactions;
+
+/* View All Refunded Transactions */
+SELECT * FROM ttransactions WHERE isrefunded=True;
+
+/* View All Non-Refunded Transactions */
+SELECT * FROM ttransactions WHERE isrefunded=False;
